@@ -2,14 +2,12 @@ package com.example.gf_android.Api;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.example.gf_android.Api.Types.Alimenti;
 import com.example.gf_android.Api.Types.LoginResponse;
+import com.example.gf_android.Api.Types.ResponseMsg;
 import com.example.gf_android.Api.Types.Tag;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -18,7 +16,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Api {
@@ -72,5 +69,13 @@ public class Api {
         return getApiResponse(call);
     }
 
+    public static String register(String username, String password, String email, int kcal) {
+        Call<ResponseMsg> call = apiService.register(username, password, email, kcal);
+        ResponseMsg responseMsg = getApiResponse(call);
+        if (responseMsg != null) {
+            return responseMsg.msg;
+        }
+        return "Error, user wasn't registered";
+    }
 
 }

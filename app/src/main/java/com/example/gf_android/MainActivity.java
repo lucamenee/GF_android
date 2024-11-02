@@ -35,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
         TextView hello = findViewById(R.id.hello);
 
 
-        ls = Api.getTags();
-        hello.setOnClickListener(v -> {
-            for (Tag tag : ls) {
-                Log.i("MainActivity", tag.id_tag + " " + tag.nome_tag);
-            }
-        });
+//        ls = Api.getTags();
+//        hello.setOnClickListener(v -> {
+//            for (Tag tag : ls) {
+//                Log.i("MainActivity", tag.id_tag + " " + tag.nome_tag);
+//            }
+//        });
 
 //        la = Api.getAlimenti();
 //        hello.setOnClickListener(v -> {
@@ -54,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
 //        hello.setOnClickListener(v -> {
 //            Log.i("MainActivity", lr.msg + " " + lr.id_utente);
 //        });
+
+        String msg = Api.register("test3", "test3", "test3", 1000);
+        hello.setOnClickListener(v -> {
+            Log.i("MainActivity", "msg:" + msg);
+        });
 
 
 
