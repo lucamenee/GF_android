@@ -35,19 +35,25 @@ public class MainActivity extends AppCompatActivity {
         TextView hello = findViewById(R.id.hello);
 
 
-//        ls = Api.getTags();
+        ls = Api.getTags();
+        hello.setOnClickListener(v -> {
+            for (Tag tag : ls) {
+                Log.i("MainActivity", tag.id_tag + " " + tag.nome_tag);
+            }
+        });
+
+//        la = Api.getAlimenti();
 //        hello.setOnClickListener(v -> {
-//            for (Tag tag : ls) {
-//                Log.i("MainActivity", tag.id_tag + " " + tag.nome_tag);
+//            for (Alimenti alimento : la) {
+//                Log.i("MainActivity", alimento.id_alimento + " " + alimento.nome_alimento + " " + alimento.id_cat + " " + alimento.img + " " + alimento.kcal + " " + alimento.peso_unitario + " " + alimento.nome_categoria + " " + alimento.durata_media);
 //            }
 //        });
 
-        la = Api.getAlimenti();
-        hello.setOnClickListener(v -> {
-            for (Alimenti alimento : la) {
-                Log.i("MainActivity", alimento.id_alimento + " " + alimento.nome_alimento + " " + alimento.id_cat + " " + alimento.img + " " + alimento.kcal + " " + alimento.peso_unitario + " " + alimento.nome_categoria + " " + alimento.durata_media);
-            }
-        });
+
+//        LoginResponse lr = Api.login("test", "test");
+//        hello.setOnClickListener(v -> {
+//            Log.i("MainActivity", lr.msg + " " + lr.id_utente);
+//        });
 
 
 
