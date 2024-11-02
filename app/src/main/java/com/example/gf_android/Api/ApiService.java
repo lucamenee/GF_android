@@ -1,5 +1,6 @@
 package com.example.gf_android.Api;
 
+import com.example.gf_android.Api.Types.Alimenti;
 import com.example.gf_android.Api.Types.Tag;
 
 import retrofit2.Call;
@@ -9,4 +10,7 @@ import java.util.List;
 public interface ApiService {
     @GET("tags")
     Call<List<Tag>> getTags();
+
+    @GET("alimenti")
+    Call<List<Alimenti>> getAlimenti();
 }
