@@ -2,10 +2,11 @@ package com.example.gf_android.Api;
 
 import android.util.Log;
 
-import com.example.gf_android.Api.Types.Alimenti;
+import com.example.gf_android.Api.Types.Alimento;
 import com.example.gf_android.Api.Types.LoginResponse;
 import com.example.gf_android.Api.Types.ResponseMsg;
 import com.example.gf_android.Api.Types.Tag;
+import com.example.gf_android.Api.Types.UpdateInsertMsg;
 
 import java.io.IOException;
 import java.util.List;
@@ -59,8 +60,8 @@ public class Api {
         return getApiResponse(call);
     }
 
-    public static List<Alimenti> getAlimenti() {
-        Call<List<Alimenti>> call = apiService.getAlimenti();
+    public static List<Alimento> getAlimenti() {
+        Call<List<Alimento>> call = apiService.getAlimenti();
         return getApiResponse(call);
     }
 
@@ -76,6 +77,20 @@ public class Api {
             return responseMsg.msg;
         }
         return "Error, user wasn't registered";
+    }
+
+    public static List<Alimento> inventory(int idInventory) {
+        Call<List<Alimento>> call = apiService.inventory(idInventory);
+        return getApiResponse(call);
+    }
+
+    public static String addFoodInventory(int idInventory, int idAlimento, int grammi, String dataScadenza, boolean essenziale) {
+        Call<UpdateInsertMsg> call = apiService.addFoodInventory(idInventory, idAlimento, grammi, dataScadenza, essenziale);
+        UpdateInsertMsg updateInsertMsg = getApiResponse(call);
+        if (updateInsertMsg != null) {
+            return updateInsertMsg.msg;
+        }
+        return "Error, food wasn't added to inventory";
     }
 
 }

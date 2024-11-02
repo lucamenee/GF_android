@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     List<Tag> ls;
-    List<Alimenti> la;
+    List<Alimento> la;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +55,21 @@ public class MainActivity extends AppCompatActivity {
 //            Log.i("MainActivity", lr.msg + " " + lr.id_utente);
 //        });
 
-        String msg = Api.register("test3", "test3", "test3", 1000);
+//        String msg = Api.register("test3", "test3", "test3", 1000);
+//        hello.setOnClickListener(v -> {
+//            Log.i("MainActivity", "msg:" + msg);
+//        });
+
+//        la = Api.inventory(1);
+//        hello.setOnClickListener(v -> {
+//            for (Alimento alimento : la) {
+//                Log.i("MainActivity", alimento.id_alimento + " " + alimento.nome_alimento + " " + alimento.id_cat + " " + alimento.img + " " + alimento.kcal + " " + alimento.peso_unitario + " " + alimento.nome_categoria + " " + alimento.durata_media + " " + alimento.grammi + " " + alimento.data_scadenza + " " + alimento.data_inserimento + " " + alimento.essenziale + " " + alimento.expiresIn());
+//            }
+//        });
+
+        String uim = Api.addFoodInventory(1, 3, 100, "2021-12-31", true);
         hello.setOnClickListener(v -> {
-            Log.i("MainActivity", "msg:" + msg);
+            Log.i("MainActivity", uim);
         });
 
 
