@@ -84,13 +84,13 @@ public class Api {
         return getApiResponse(call);
     }
 
-    public static String addFoodInventory(int idInventory, int idAlimento, int grammi, String dataScadenza, boolean essenziale) {
+    public static UpdateInsertMsg addFoodInventory(int idInventory, int idAlimento, int grammi, String dataScadenza, boolean essenziale) {
         Call<UpdateInsertMsg> call = apiService.addFoodInventory(idInventory, idAlimento, grammi, dataScadenza, essenziale);
         UpdateInsertMsg updateInsertMsg = getApiResponse(call);
         if (updateInsertMsg != null) {
-            return updateInsertMsg.msg;
+            return updateInsertMsg;
         }
-        return "Error, food wasn't added to inventory";
+        return new UpdateInsertMsg( "Error, food wasn't added to inventory", 0);
     }
 
 }

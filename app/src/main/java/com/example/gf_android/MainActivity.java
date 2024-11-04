@@ -67,10 +67,10 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        String uim = Api.addFoodInventory(1, 3, 100, "2021-12-31", true);
-        hello.setOnClickListener(v -> {
-            Log.i("MainActivity", uim);
-        });
+//        String uim = Api.addFoodInventory(1, 3, 100, "2021-12-31", true);
+//        hello.setOnClickListener(v -> {
+//            Log.i("MainActivity", uim);
+//        });
 
 
 
