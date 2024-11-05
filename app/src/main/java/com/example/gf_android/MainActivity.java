@@ -1,5 +1,8 @@
 package com.example.gf_android;
 
+import static java.lang.String.*;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     List<Tag> ls;
     List<Alimento> la;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +36,14 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        intent = getIntent();
+
         TextView hello = findViewById(R.id.hello);
 
+        runOnUiThread(() -> {
+            hello.setText(format("id utente = %d", intent.getIntExtra("id_utente", 0)));
+        });
+        Log.i("MainActivity", "id_utente: " + intent.getIntExtra("id_utente", 0));
 
 //        ls = Api.getTags();
 //        hello.setOnClickListener(v -> {
