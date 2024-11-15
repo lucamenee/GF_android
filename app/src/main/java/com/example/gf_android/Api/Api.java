@@ -7,6 +7,7 @@ import com.example.gf_android.Api.Types.LoginResponse;
 import com.example.gf_android.Api.Types.ResponseMsg;
 import com.example.gf_android.Api.Types.Tag;
 import com.example.gf_android.Api.Types.UpdateInsertMsg;
+import com.example.gf_android.Api.Types.Utente;
 
 import java.io.IOException;
 import java.util.List;
@@ -92,5 +93,17 @@ public class Api {
         }
         return new UpdateInsertMsg( "Error, food wasn't added to inventory", 0);
     }
+
+    public static Utente getUser(int idUtente) {
+        Call<Utente> call = apiService.getUser(idUtente);
+        return getApiResponse(call);
+    }
+
+    /* da mettere dopo che è stato implementato l'endpoint su node
+    public static List<ObiettivoPerGiorno> getObiettivoPerGiorno(int idUtente) { // da controllare
+        Call<List<ObiettivoPerGiorno>> call = apiService.getObiettivoPerGiorno(idUtente);
+        return getApiResponse(call);
+    }
+     */
 
 }

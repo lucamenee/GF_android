@@ -5,6 +5,7 @@ import com.example.gf_android.Api.Types.LoginResponse;
 import com.example.gf_android.Api.Types.ResponseMsg;
 import com.example.gf_android.Api.Types.Tag;
 import com.example.gf_android.Api.Types.UpdateInsertMsg;
+import com.example.gf_android.Api.Types.Utente;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -34,5 +35,8 @@ public interface ApiService {
     Call<UpdateInsertMsg> addFoodInventory(@Query("id_inventario") int idInventory, @Query("id_alimento") int idAlimento,
                                            @Query("grammi") int grammi, @Query("data_scadenza") String dataScadenza,
                                            @Query("essenziale") boolean essenziale);
+
+    @GET("user")
+    Call<Utente> getUser(@Query("id_utente") int idUtente);
 
 }
