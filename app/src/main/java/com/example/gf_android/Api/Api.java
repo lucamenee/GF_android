@@ -4,12 +4,15 @@ import android.util.Log;
 
 import com.example.gf_android.Api.Types.Alimento;
 import com.example.gf_android.Api.Types.LoginResponse;
+import com.example.gf_android.Api.Types.ObiettivoSettimana;
 import com.example.gf_android.Api.Types.ResponseMsg;
+import com.example.gf_android.Api.Types.Ricetta;
 import com.example.gf_android.Api.Types.Tag;
 import com.example.gf_android.Api.Types.UpdateInsertMsg;
 import com.example.gf_android.Api.Types.Utente;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -99,11 +102,38 @@ public class Api {
         return getApiResponse(call);
     }
 
-    /* da mettere dopo che è stato implementato l'endpoint su node
-    public static List<ObiettivoPerGiorno> getObiettivoPerGiorno(int idUtente) { // da controllare
-        Call<List<ObiettivoPerGiorno>> call = apiService.getObiettivoPerGiorno(idUtente);
+
+
+    /* da testare */
+
+    public static List<ObiettivoSettimana> getObiettivoPerGiorno(int idUtente) { // da controllare
+        Call<List<ObiettivoSettimana>> call = apiService.getObiettivoPerGiorno(idUtente);
         return getApiResponse(call);
     }
-     */
+
+    public static UpdateInsertMsg updateUserInfo(int idUtente, int obiettivoKcal, String email, int idInventario) {
+        Call<UpdateInsertMsg> call = apiService.updateUserInfo(idUtente, obiettivoKcal, email, idInventario);
+        return getApiResponse(call);
+    }
+
+    public static UpdateInsertMsg updateFoodQt(int idRigaInventario, int grammi) {
+        Call<UpdateInsertMsg> call = apiService.updateFoodQt(idRigaInventario, grammi);
+        return getApiResponse(call);
+    }
+
+    public static UpdateInsertMsg updateFoodExpire(int idRigaInventario, Date dataScadenza) {
+        Call<UpdateInsertMsg> call = apiService.updateFoodExpire(idRigaInventario, dataScadenza);
+        return getApiResponse(call);
+    }
+
+    public static UpdateInsertMsg consumeFood(int idRigaInventario, int grammi, int idUtente) {
+        Call<UpdateInsertMsg> call = apiService.consumeFood(idRigaInventario, grammi, idUtente);
+        return getApiResponse(call);
+    }
+
+    public static List<Ricetta> suggestRecepies(int idUtente) {
+        Call<List<Ricetta>> call = apiService.suggestRecipes(idUtente);
+        return getApiResponse(call);
+    }
 
 }
