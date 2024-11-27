@@ -7,5 +7,11 @@ import java.util.List;
 public class Ricetta {
     public int id_ricetta;
     public String nome_ricetta;
-    public List<Pair<String, Integer>> ingredienti;
+
+    public class Ingrediente {
+        public int nome_alimento;
+        public int grammi;
+    }
+
+    public List<Ingrediente> ingredienti;
 }

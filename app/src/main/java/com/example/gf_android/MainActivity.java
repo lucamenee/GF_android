@@ -1,17 +1,12 @@
 package com.example.gf_android;
 
-import static java.lang.String.*;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gf_android.Api.*;
 import com.example.gf_android.Api.Types.*;
@@ -20,67 +15,41 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    List<Tag> ls;
-    List<Alimento> la;
+    List<Alimento> inventario;
+    List<Alimento> allAlimenti;
+    List<Ricetta> suggestedRecipes;
     Intent intent;
+    int idUtente;
+    int idInventario;
+    Button btnSuggerisci;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        btnSuggerisci = findViewById(R.id.btn_suggerisci);
 
+        // getting user info from loginActivity intent
         intent = getIntent();
+        idUtente = intent.getIntExtra("id_utente", 0);
+        idInventario = intent.getIntExtra("id_inventario", 0);
+        Log.i("MainActivity", "id_utente: " + idUtente + ", id_inventario: " + idInventario);
+        // TODO: forse bisogna mettere controllo che info da intent siano state ottenute correttamente
 
-        TextView hello = findViewById(R.id.hello);
 
-        runOnUiThread(() -> {
-            hello.setText(format("id utente = %d", intent.getIntExtra("id_utente", 0)));
+        allAlimenti = Api.getAlimenti();
+        inventario = Api.inventory(idInventario);
+
+        // TODO: showing food in user inventory
+
+
+        // suggesting recipes
+        suggestedRecipes = Api.suggestRecepies(idUtente);
+        btnSuggerisci.setOnClickListener(v -> {
+            // TODO: showing suggested recipes
         });
-        Log.i("MainActivity", "id_utente: " + intent.getIntExtra("id_utente", 0));
-
-//        ls = Api.getTags();
-//        hello.setOnClickListener(v -> {
-//            for (Tag tag : ls) {
-//                Log.i("MainActivity", tag.id_tag + " " + tag.nome_tag);
-//            }
-//        });
-
-//        la = Api.getAlimenti();
-//        hello.setOnClickListener(v -> {
-//            for (Alimenti alimento : la) {
-//                Log.i("MainActivity", alimento.id_alimento + " " + alimento.nome_alimento + " " + alimento.id_cat + " " + alimento.img + " " + alimento.kcal + " " + alimento.peso_unitario + " " + alimento.nome_categoria + " " + alimento.durata_media);
-//            }
-//        });
 
 
-//        LoginResponse lr = Api.login("test", "test");
-//        hello.setOnClickListener(v -> {
-//            Log.i("MainActivity", lr.msg + " " + lr.id_utente);
-//        });
-
-//        String msg = Api.register("test3", "test3", "test3", 1000);
-//        hello.setOnClickListener(v -> {
-//            Log.i("MainActivity", "msg:" + msg);
-//        });
-
-//        la = Api.inventory(1);
-//        hello.setOnClickListener(v -> {
-//            for (Alimento alimento : la) {
-//                Log.i("MainActivity", alimento.id_alimento + " " + alimento.nome_alimento + " " + alimento.id_cat + " " + alimento.img + " " + alimento.kcal + " " + alimento.peso_unitario + " " + alimento.nome_categoria + " " + alimento.durata_media + " " + alimento.grammi + " " + alimento.data_scadenza + " " + alimento.data_inserimento + " " + alimento.essenziale + " " + alimento.expiresIn());
-//            }
-//        });
-
-//        String uim = Api.addFoodInventory(1, 3, 100, "2021-12-31", true);
-//        hello.setOnClickListener(v -> {
-//            Log.i("MainActivity", uim);
-//        });
 
 
 
