@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gf_android.Api.Types.Alimento;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.AlimentoViewHolder> {
