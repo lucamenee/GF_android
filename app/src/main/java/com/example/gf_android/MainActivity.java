@@ -10,6 +10,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gf_android.Api.*;
 import com.example.gf_android.Api.Types.*;
@@ -25,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
     int idUtente;
     int idInventario;
     Button btnSuggerisci;
+
+    /* inventario */
+    RecyclerView recyclerView;
+    AlimentoAdapter adapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +52,11 @@ public class MainActivity extends AppCompatActivity {
         inventario = Api.inventory(idInventario);
 
         // TODO: showing food in user inventory
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // 3 colonne
 
+        adapter = new AlimentoAdapter(this, inventario);
+        recyclerView.setAdapter(adapter);
 
         // suggesting recipes
         btnSuggerisci.setOnClickListener(view -> {
@@ -55,10 +67,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
     }
-
-
 }
