@@ -9,7 +9,7 @@ public class Ricetta {
     public String nome_ricetta;
 
     public class Ingrediente {
-        public int nome_alimento;
+        public String nome_alimento;
         public int grammi;
     }
 

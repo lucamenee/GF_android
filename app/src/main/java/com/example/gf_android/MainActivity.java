@@ -3,10 +3,13 @@ package com.example.gf_android;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.gf_android.Api.*;
 import com.example.gf_android.Api.Types.*;
@@ -44,9 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         // suggesting recipes
-        suggestedRecipes = Api.suggestRecepies(idUtente);
-        btnSuggerisci.setOnClickListener(v -> {
-            // TODO: showing suggested recipes
+        btnSuggerisci.setOnClickListener(view -> {
+            FragmentManager fragmentRecipes = getSupportFragmentManager();
+            RecipesPopUp recipesPopUp = new RecipesPopUp();
+            recipesPopUp.setData(idInventario);
+            recipesPopUp.show(fragmentRecipes, "recipesPopUp");
         });
 
 

@@ -102,6 +102,10 @@ public class Api {
         return getApiResponse(call);
     }
 
+    public static List<Ricetta> suggestRecepies(int idInventario) {
+        Call<List<Ricetta>> call = apiService.suggestRecipes(idInventario);
+        return getApiResponse(call);
+    }
 
 
     /* da testare */
@@ -131,9 +135,6 @@ public class Api {
         return getApiResponse(call);
     }
 
-    public static List<Ricetta> suggestRecepies(int idUtente) {
-        Call<List<Ricetta>> call = apiService.suggestRecipes(idUtente);
-        return getApiResponse(call);
-    }
+
 
 }
