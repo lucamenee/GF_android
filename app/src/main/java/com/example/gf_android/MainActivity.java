@@ -1,6 +1,7 @@
 package com.example.gf_android;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,11 +27,19 @@ public class MainActivity extends AppCompatActivity {
     int idInventario;
     Button btnSuggerisci;
 
+    MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnSuggerisci = findViewById(R.id.btn_suggerisci);
+
+        //app's intro player
+        mediaPlayer = MediaPlayer.create(this, R.raw.app_intro);
+        mediaPlayer.start();
+        Log.i("media", "is playing: " + mediaPlayer.isPlaying());
+
 
         // getting user info from loginActivity intent
         intent = getIntent();
