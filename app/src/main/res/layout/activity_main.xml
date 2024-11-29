@@ -29,13 +29,13 @@
 
     <!-- Button "Suggeriscimi una ricetta" -->
     <Button
+        style="@style/LightBlueButton"
         android:id="@+id/btn_suggerisci"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="70dp"
-        android:backgroundTint="#64B5F6"
         android:elevation="4dp"
         android:padding="12dp"
         android:text="Suggeriscimi una ricetta"
@@ -54,29 +54,37 @@
     <!-- Lower button bar -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="93dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-2dp"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:padding="16dp">
-
-        <!-- Filter -->
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/filter"
-            android:background="@null"
-            android:contentDescription="filter_button"
-            tools:ignore="HardcodedText" />
+        android:padding="4dp">
 
         <!-- Add -->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/add"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:background="@null"
-            android:layout_marginStart="200dp"
             android:contentDescription="add_button"
+            android:src="@drawable/add"
+            tools:ignore="HardcodedText" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <!-- Filter -->
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@null"
+            android:contentDescription="filter_button"
+            android:src="@drawable/filter"
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
