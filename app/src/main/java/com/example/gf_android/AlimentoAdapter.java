@@ -1,6 +1,7 @@
 package com.example.gf_android;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,7 @@ public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.Alimen
         return new AlimentoViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull AlimentoViewHolder holder, int position)
     {
@@ -49,6 +51,14 @@ public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.Alimen
                 //.load(alimento.getImg())
                 //.placeholder(R.drawable.logo)
                 //.into(holder.imageViewAlimento);
+
+
+        // Imposta il click listener
+        holder.itemView.setOnClickListener(v-> {
+            FoodPopUp foodPopUp = new FoodPopUp();
+            foodPopUp.setAlimento(alimento);
+            foodPopUp.show(((MainActivity) context).getSupportFragmentManager(), "foodPopUp");
+        });
     }
 
 

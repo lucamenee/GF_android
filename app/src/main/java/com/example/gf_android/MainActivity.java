@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         //app's intro player
         mediaPlayer = MediaPlayer.create(this, R.raw.app_intro);
         mediaPlayer.start();
-        Log.i("media", "is playing: " + mediaPlayer.isPlaying());
 
 
         // getting user info from loginActivity intent
