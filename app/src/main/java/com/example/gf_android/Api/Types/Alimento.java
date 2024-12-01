@@ -1,5 +1,7 @@
 package com.example.gf_android.Api.Types;
 
+import androidx.annotation.NonNull;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -50,5 +52,9 @@ public class Alimento {
 
     public boolean isEssenziale() { return essenziale; }
 
-
+    @NonNull
+    @Override
+    public String toString() {
+        return this.nome_alimento;
+    }
 }

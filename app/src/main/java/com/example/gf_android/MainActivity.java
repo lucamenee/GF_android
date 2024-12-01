@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gf_android.Api.*;
 import com.example.gf_android.Api.Types.*;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     List<Ricetta> suggestedRecipes;
     Intent intent;
     int idUtente;
-    int idInventario;
+    static int idInventario;
     Button btnSuggerisci;
 
     /* inventario */
@@ -74,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
             recipesPopUp.show(fragmentRecipes, "recipesPopUp");
         });
 
-
+        FloatingActionButton fab = findViewById(R.id.fab_add_Alimento);
+        fab.setOnClickListener(v -> AddAlimento.showAddProductDialog(MainActivity.this));
 
 
 

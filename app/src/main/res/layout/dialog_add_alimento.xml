@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:scrollbars="vertical">
+
+
+    <Spinner
+        android:id="@+id/et_product_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <!-- DatePicker  -->
+    <Button
+        android:id="@+id/btn_select_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data di scadenza"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Quantity  -->
+    <EditText
+        android:id="@+id/et_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Quantità"
+        android:inputType="number" />
+
+    <!-- Essential Checkbox -->
+    <CheckBox
+        android:id="@+id/cb_essential"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Essenziale" />
+
+</LinearLayout>
