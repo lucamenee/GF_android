@@ -5,4 +5,6 @@
     <string name="login">Login</string>
     <string name="Username">Username</string>
     <string name="Password">Password</string>
+    <string name="add_button">Add Button</string>
+    <string name="filter_button">Filter Button</string>
 </resources>
