@@ -135,6 +135,11 @@ public class Api {
         return getApiResponse(call);
     }
 
+    public static List<Utente> getUsersInInventory(int idInventario) {
+        Call<List<Utente>> call = apiService.getUsersInInventory(idInventario);
+        return getApiResponse(call);
+    }
+
 
 
 }
