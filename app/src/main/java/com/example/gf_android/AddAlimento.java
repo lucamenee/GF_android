@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +19,10 @@ import android.widget.Toast;
 import android.widget.ArrayAdapter;
 import com.example.gf_android.Api.Types.Alimento;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -50,7 +54,7 @@ public class AddAlimento {
         btnSelectDate.setOnClickListener(v -> {
             new DatePickerDialog(context, (view, year, month, dayOfMonth) -> {
                 // Update the button text with the selected date
-                String selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                String selectedDate = dayOfMonth + "/" + month + "/" + year;
                 btnSelectDate.setText(selectedDate);
             },
                     calendar.get(Calendar.YEAR),
@@ -71,8 +75,15 @@ public class AddAlimento {
                 boolean isEssential = Essential.isChecked();
 
                 if (quantity>0 || selectedProduct!=null || !expirationDate.isEmpty()) {
-                addFoodInventory( MainActivity.idInventario, selectedProduct.id_alimento, quantity, expirationDate, isEssential);
-                    Toast.makeText(context, "Prodotto aggiunto: " + productName, Toast.LENGTH_SHORT).show();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+                    try {
+                        Date date = dateFormat.parse(expirationDate);
+                        // TODO: nella data inserita viene fuori il mese succcessivo a quello selezionato, ricordati la stpria dei grammi e del peso unitario
+                        addFoodInventory(MainActivity.idInventario, selectedProduct.id_alimento, quantity, date, isEssential);
+                        Toast.makeText(context, "Prodotto aggiunto: " + productName, Toast.LENGTH_SHORT).show();
+                    } catch (ParseException e) {
+                        Toast.makeText(context, "Data non valida", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(context, "Compila tutti i campi", Toast.LENGTH_SHORT).show();
                 }

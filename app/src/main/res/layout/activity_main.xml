@@ -70,7 +70,8 @@
             android:elevation="4dp"
             android:contentDescription="@string/add_button"
             app:srcCompat="@drawable/ic_add"
-            app:backgroundTint="@color/colorSecondary" />
+            style="@style/LightBlueButton"
+            />
 
         <View
             android:layout_width="0dp"
@@ -81,12 +82,13 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_filter_Alimento"
             android:layout_width="56dp"
+            style="@style/LightBlueButton"
+
             android:layout_height="56dp"
             android:layout_margin="16dp"
             android:elevation="4dp"
             android:contentDescription="@string/filter_button"
-            app:srcCompat="@drawable/ic_filter"
-            app:backgroundTint="@color/colorSecondary" />
+            app:srcCompat="@drawable/ic_filter" />
 
     </LinearLayout>
 

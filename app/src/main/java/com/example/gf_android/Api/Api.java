@@ -88,7 +88,7 @@ public class Api {
         return getApiResponse(call);
     }
 
-    public static UpdateInsertMsg addFoodInventory(int idInventory, int idAlimento, int grammi, String dataScadenza, boolean essenziale) {
+    public static UpdateInsertMsg addFoodInventory(int idInventory, int idAlimento, int grammi, Date dataScadenza, boolean essenziale) {
         Call<UpdateInsertMsg> call = apiService.addFoodInventory(idInventory, idAlimento, grammi, dataScadenza, essenziale);
         UpdateInsertMsg updateInsertMsg = getApiResponse(call);
         if (updateInsertMsg != null) {

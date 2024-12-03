@@ -17,7 +17,9 @@
     <!-- DatePicker  -->
     <Button
         android:id="@+id/btn_select_date"
-        android:layout_width="match_parent"
+        style="@style/LightBlueButton"
+
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Data di scadenza"
         android:layout_marginBottom="16dp" />

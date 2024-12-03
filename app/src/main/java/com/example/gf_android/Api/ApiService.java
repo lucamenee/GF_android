@@ -36,7 +36,7 @@ public interface ApiService {
 
     @POST("addFoodInventory")
     Call<UpdateInsertMsg> addFoodInventory(@Query("id_inventario") int idInventory, @Query("id_alimento") int idAlimento,
-                                           @Query("grammi") int grammi, @Query("data_scadenza") String dataScadenza,
+                                           @Query("grammi") int grammi, @Query("data_scadenza") Date dataScadenza,
                                            @Query("essenziale") boolean essenziale);
 
     @GET("user")
