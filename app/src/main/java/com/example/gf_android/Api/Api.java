@@ -120,6 +120,7 @@ public class Api {
         return getApiResponse(call);
     }
 
+    // for alimento of idRigaInventario it adds "grammi" grams to it
     public static UpdateInsertMsg updateFoodQt(int idRigaInventario, int grammi) {
         Call<UpdateInsertMsg> call = apiService.updateFoodQt(idRigaInventario, grammi);
         return getApiResponse(call);
