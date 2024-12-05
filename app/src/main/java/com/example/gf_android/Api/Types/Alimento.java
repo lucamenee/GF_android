@@ -28,7 +28,7 @@ public class Alimento {
 
     public String getScadenza()
     {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); //forse ce un metodo migliore
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); //forse ce un metodo migliore
         return sdf.format(data_scadenza);
     }
 
@@ -48,9 +48,15 @@ public class Alimento {
 
     public int getGrammi() { return grammi; }
 
-    public Date getData_inserimento() { return data_inserimento; }
+    public String getDataInserimento()
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); //forse ce un metodo migliore
+        return sdf.format(data_inserimento);
+    }
 
     public boolean isEssenziale() { return essenziale; }
+
+    public boolean isExpired() { return  this.data_scadenza.before(new Date()); }
 
     @NonNull
     @Override
