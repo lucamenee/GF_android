@@ -1,61 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
     android:layout_gravity="center"
     android:layout_margin="1dp"
-    android:radius="8dp">
+    android:radius="5dp"
+    app:layout_constraintDimensionRatio="1:1">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
         android:background="#333333"
-        android:elevation="1dp"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:elevation="0dp"
+        android:padding="0dp"
+        app:layout_constraintDimensionRatio="1:1">
 
         <TextView
             android:id="@+id/textViewNome"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
             android:gravity="center"
             android:text="Nome"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageViewAlimento"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="2dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/logo" />
-
-        <!--
-        <TextView
-            android:id="@+id/textViewQuantita"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Quantità"
-            android:textSize="14sp"
-            android:textColor="#FFFFFF"
-            android:gravity="center" />
-        -->
+            android:src="@drawable/logo"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@id/textViewNome"
+            app:layout_constraintStart_toStartOf="@id/textViewNome"
+            app:layout_constraintTop_toBottomOf="@id/textViewNome" />
 
         <TextView
             android:id="@+id/textViewScadenza"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:gravity="center"
             android:text="2024-12-01"
             android:textColor="#FFFFFF"
-            android:textSize="14sp" />
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewAlimento" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

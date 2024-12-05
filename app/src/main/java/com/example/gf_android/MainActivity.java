@@ -68,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
         adapter = new AlimentoAdapter(this, inventario);
         recyclerView.setAdapter(adapter);
 
+
+        int spacing = 20;
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, spacing, true));
+
         // suggesting recipes
         btnSuggerisci.setOnClickListener(view -> {
             FragmentManager fragmentRecipes = getSupportFragmentManager();
