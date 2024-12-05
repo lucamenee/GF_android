@@ -6,4 +6,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryVariant">#3700B3</color>
     <color name="colorSecondary">#1BB1FA</color>
+
+    <color name="buono">#2AB760</color> <!-- Verde -->
+    <color name="quasiscaduto">#D9CA2B</color> <!-- Giallo -->
+    <color name="scaduto">#D53417</color> <!-- Rosso -->
 </resources>
