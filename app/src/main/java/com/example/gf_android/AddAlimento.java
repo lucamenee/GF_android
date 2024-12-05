@@ -27,7 +27,7 @@ import java.util.List;
 
 
 public class AddAlimento {
-    public static void showAddProductDialog(final Context context) {
+    public static void showAddProductDialog(final Context context, OnUpdatesListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Aggiungi prodotto");
 
@@ -54,7 +54,7 @@ public class AddAlimento {
         btnSelectDate.setOnClickListener(v -> {
             new DatePickerDialog(context, (view, year, month, dayOfMonth) -> {
                 // Update the button text with the selected date
-                String selectedDate = dayOfMonth + "/" + month + "/" + year;
+                String selectedDate = dayOfMonth + "/" + (month+1) + "/" + year;
                 btnSelectDate.setText(selectedDate);
             },
                     calendar.get(Calendar.YEAR),
@@ -75,11 +75,14 @@ public class AddAlimento {
                 boolean isEssential = Essential.isChecked();
 
                 if (quantity>0 || selectedProduct!=null || !expirationDate.isEmpty()) {
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    Log.i("AddAlimento", "expirationDate: " + expirationDate);
                     try {
                         Date date = dateFormat.parse(expirationDate);
-                        // TODO: nella data inserita viene fuori il mese succcessivo a quello selezionato, ricordati la stpria dei grammi e del peso unitario
+                        // TODO: ricordati la storia dei grammi e del peso unitario
                         addFoodInventory(MainActivity.idInventario, selectedProduct.id_alimento, quantity, date, isEssential);
+                        if (listener != null)
+                            listener.onUpdate();
                         Toast.makeText(context, "Prodotto aggiunto: " + productName, Toast.LENGTH_SHORT).show();
                     } catch (ParseException e) {
                         Toast.makeText(context, "Data non valida", Toast.LENGTH_SHORT).show();

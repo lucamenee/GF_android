@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- TODO: metti layout migliore -> guarda ricette suggerite -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -159,13 +158,43 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/close_button"
-        style="@style/LightBlueButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Chiudi"
-        android:layout_marginTop="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:showDividers="middle"
+        android:divider="@drawable/empty_divider"
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/remove_food_button"
+            style="@style/LightBlueButton"
+            android:backgroundTint="@color/remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Rimuovi\nalimento"
+            android:padding="5dp"/>
+
+        <Button
+            android:id="@+id/update_food_button"
+            style="@style/LightBlueButton"
+            android:backgroundTint="@color/update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Aggiorna"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/close_food_popup_button"
+            style="@style/LightBlueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Chiudi"
+            android:padding="5dp" />
+    </LinearLayout>
 
 </LinearLayout>

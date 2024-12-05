@@ -18,7 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnUpdatesListener {
 
     List<Alimento> inventario;
     List<Alimento> allAlimenti;
@@ -61,14 +61,15 @@ public class MainActivity extends AppCompatActivity {
         inventario = Api.inventory(idInventario);
         helloMsg.setText("Ciao @" + Api.getUser(idUtente).username);
 
-        // TODO: showing food in user inventoro
+        // TODO: showing food in user inventory
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // 3 colonne
 
         adapter = new AlimentoAdapter(this, inventario);
         recyclerView.setAdapter(adapter);
 
-        int spacing = 10;
+
+        int spacing = 20;
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, spacing, true));
 
         // suggesting recipes
@@ -80,10 +81,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         FloatingActionButton fab = findViewById(R.id.fab_add_Alimento);
-        fab.setOnClickListener(v -> AddAlimento.showAddProductDialog(MainActivity.this));
+        fab.setOnClickListener(v -> AddAlimento.showAddProductDialog(MainActivity.this, this));
 
 
 
+    }
+
+
+
+    @Override
+    public void onUpdate() {
+        inventario = Api.inventory(idInventario);
+        adapter.updateData(inventario);
     }
 
 

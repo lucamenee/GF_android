@@ -96,9 +96,10 @@ public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.Alimen
 
 
         // Imposta il click listener
-        holder.itemView.setOnClickListener(v-> {
+        holder.itemView.setOnClickListener(v -> {
             FoodPopUp foodPopUp = new FoodPopUp();
             foodPopUp.setAlimento(alimento);
+            foodPopUp.setOnUpdateListener((MainActivity) context);
             foodPopUp.show(((MainActivity) context).getSupportFragmentManager(), "foodPopUp");
         });
     }
@@ -122,5 +123,10 @@ public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.Alimen
             imageViewAlimento = itemView.findViewById(R.id.imageViewAlimento);
             container = itemView.findViewById(R.id.container);
         }
+    }
+
+    public void updateData(List<Alimento> newInventario) {
+        this.alimentoList = newInventario;
+        notifyDataSetChanged();
     }
 }

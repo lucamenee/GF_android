@@ -10,33 +10,35 @@
     <!-- Upper bar -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="75dp"
         android:background="#90CAF9"
-        android:padding="16dp">
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:id="@+id/upper_bar">
 
         <TextView
+            android:id="@+id/hello_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:text="Hello msg"
-            android:id="@+id/hello_msg"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:layout_gravity="center_vertical"
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
 
     <!-- Button "Suggeriscimi una ricetta" -->
+
+    <!-- Grid inventario -->
     <Button
-        style="@style/LightBlueButton"
         android:id="@+id/btn_suggerisci"
+        style="@style/LightBlueButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="70dp"
+        android:layout_margin="16dp"
+        android:layout_below="@id/upper_bar"
         android:elevation="4dp"
         android:padding="12dp"
         android:text="Suggeriscimi una ricetta"
@@ -44,13 +46,12 @@
         android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
-    <!-- Grid inventario -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_suggerisci"
-        android:layout_margin="1dp"
+        android:layout_margin="8dp"
         android:scrollbars="vertical" />
 
     <!-- Lower button bar -->
