@@ -61,15 +61,14 @@ public class MainActivity extends AppCompatActivity {
         inventario = Api.inventory(idInventario);
         helloMsg.setText("Ciao @" + Api.getUser(idUtente).username);
 
-        // TODO: showing food in user inventory
+        // TODO: showing food in user inventoro
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // 3 colonne
 
         adapter = new AlimentoAdapter(this, inventario);
         recyclerView.setAdapter(adapter);
 
-
-        int spacing = 20;
+        int spacing = 10;
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, spacing, true));
 
         // suggesting recipes

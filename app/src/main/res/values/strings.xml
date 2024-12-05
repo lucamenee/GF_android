@@ -7,4 +7,9 @@
     <string name="Password">Password</string>
     <string name="add_button">Add Button</string>
     <string name="filter_button">Filter Button</string>
+
+    <string name="scade_in">Scade in %1$dg</string>
+    <string name="scaduto_da">Scaduto da %1$dg</string>
+    <string name="scade_oggi">Scade oggi</string>
+
 </resources>

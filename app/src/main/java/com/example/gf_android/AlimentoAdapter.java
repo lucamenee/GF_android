@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-//import com.bumptech.glide.Glide;
 
 import com.example.gf_android.Api.Types.Alimento;
 
@@ -22,7 +22,8 @@ public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.Alimen
     private Context context;
     private List<Alimento> alimentoList;
 
-    public AlimentoAdapter(Context context, List<Alimento> alimentoList) {
+    public AlimentoAdapter(Context context, List<Alimento> alimentoList)
+    {
         this.context = context;
         this.alimentoList = alimentoList;
     }
@@ -42,15 +43,56 @@ public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.Alimen
 
         // Imposta i dati
         holder.textViewNome.setText(alimento.getNome());
-        //holder.textViewQuantita.setText("Quantità: " + alimento.getPeso_unitario());
-        holder.textViewScadenza.setText(alimento.getScadenza());
 
 
-        // Carica l'immagine (usa Glide o Picasso)
-        //Glide.with(context)
-                //.load(alimento.getImg())
-                //.placeholder(R.drawable.logo)
-                //.into(holder.imageViewAlimento);
+        int giorni = alimento.expiresIn();
+        if (giorni > 0) {
+            holder.textViewScadenza.setText(context.getString(R.string.scade_in, giorni));
+        } else if (giorni < 0) {
+            holder.textViewScadenza.setText(context.getString(R.string.scaduto_da, Math.abs(giorni)));
+        } else {
+            holder.textViewScadenza.setText(context.getString(R.string.scade_oggi));
+        }
+
+        // Cambia il colore del container in base ai giorni mancanti
+        if (giorni > 7) {
+            holder.container.setCardBackgroundColor(ContextCompat.getColor(context, R.color.buono)); // Colore verde
+        } else if (giorni > 0) {
+            holder.container.setCardBackgroundColor(ContextCompat.getColor(context, R.color.quasiscaduto)); // Colore giallo
+        } else {
+            holder.container.setCardBackgroundColor(ContextCompat.getColor(context, R.color.scaduto)); // Colore rosso
+        }
+
+        /* NON FUNZIONA
+        // Aggiungi il bordo solo se essenziale
+        if (alimento.isEssenziale()) {
+            // Applica un bordo se l'alimento è essenziale
+            holder.container.setBackgroundResource(R.drawable.border_cardview); // Usa il layer con il bordo
+        } else {
+            // Non applicare il bordo, ma lascia il colore di sfondo
+            holder.container.setBackgroundResource(0); // Nessun bordo
+        }*/
+
+        // Imposta la quantità
+        if (alimento.getPeso_unitario() != 0) {
+            holder.textViewQuantita.setText(String.valueOf(alimento.getGrammi() / alimento.getPeso_unitario()));
+        } else {
+            holder.textViewQuantita.setText(String.valueOf(alimento.getGrammi()) + " g");
+        }
+
+        //Carica img
+        String imgRes = alimento.getImg();
+        if (imgRes != null && !imgRes.isEmpty()) {
+            imgRes = imgRes.substring(0, imgRes.lastIndexOf("."));
+            int resId = context.getResources().getIdentifier(imgRes, "drawable", context.getPackageName());
+            if (resId != 0) {
+                holder.imageViewAlimento.setImageResource(resId);
+            } else {
+                holder.imageViewAlimento.setImageResource(R.drawable.logo);
+            }
+        } else {
+            holder.imageViewAlimento.setImageResource(R.drawable.logo);
+        }
 
 
         // Imposta il click listener
@@ -70,13 +112,15 @@ public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.Alimen
     public static class AlimentoViewHolder extends RecyclerView.ViewHolder {
         TextView textViewNome, textViewQuantita, textViewScadenza;
         ImageView imageViewAlimento;
+        CardView container;
 
         public AlimentoViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewNome = itemView.findViewById(R.id.textViewNome);
-            //textViewQuantita = itemView.findViewById(R.id.textViewQuantita);
+            textViewQuantita = itemView.findViewById(R.id.textViewQuantita);
             textViewScadenza = itemView.findViewById(R.id.textViewScadenza);
             imageViewAlimento = itemView.findViewById(R.id.imageViewAlimento);
+            container = itemView.findViewById(R.id.container);
         }
     }
 }
