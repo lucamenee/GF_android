@@ -15,9 +15,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.gf_android.Api.Types.Alimento;
 
-import org.w3c.dom.Text;
-
-import java.util.Objects;
 
 public class FoodPopUp extends DialogFragment {
     private Alimento alimento;
@@ -36,18 +33,17 @@ public class FoodPopUp extends DialogFragment {
         Button closeButton = view.findViewById(R.id.close_button);
 
         if (alimento != null) {
-            // TODO: sistema sto schifo
             textViewNome.setText(alimento.getNome());
             textViewScadenza.setText(alimento.getScadenza());
             textViewInserimento.setText(alimento.getDataInserimento());
-            textViewKcal.setText(String.valueOf(alimento.getKcal()) + " / 100g");
+            textViewKcal.setText(String.valueOf(alimento.getKcal()) + "/100g");
             if (alimento.peso_unitario != 0) {
                 textViewQt.setText(String.valueOf(alimento.grammi / alimento.peso_unitario));
             } else {
                 textViewQt.setText(String.valueOf(alimento.grammi) + " g");
             }
 
-
+            //setting image for food using alimento.getImg()
             String imgRes = alimento.getImg().substring(0, alimento.getImg().length() - 4);
             imageViewAlimento.setImageResource(getResources().getIdentifier(imgRes, "drawable", requireContext().getPackageName()));
             closeButton.setOnClickListener(v -> dismiss());
