@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(numberOfColumns, screenWidth, true));
 */
         GridView gridView = findViewById(R.id.gridview);
-        AlimentoAdapter adapter = new AlimentoAdapter(this, inventario, Api.getUser(idUtente));
+        adapter = new AlimentoAdapter(this, inventario, Api.getUser(idUtente));
         gridView.setAdapter(adapter);
 
         // suggesting recipes
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
     @Override
     public void onUpdate() {
         inventario = Api.inventory(idInventario);
-        adapter.updateData(inventario);
+        adapter.updateData(this.inventario);
     }
 
 
