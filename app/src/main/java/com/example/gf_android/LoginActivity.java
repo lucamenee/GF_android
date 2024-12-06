@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (lr != null) {
                 startActivity(new Intent(this, MainActivity.class).putExtra("id_utente", lr.id_utente).putExtra( "id_inventario", lr.id_inventario));;
+                finish();
             } else {
                 //wrong credentials
                 Log.i("LoginActivity", "wrong credentials");
