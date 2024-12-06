@@ -63,7 +63,7 @@ public class RecipesPopUp  extends DialogFragment {
 
         }
 
-        Button closeButton = view.findViewById(R.id.close_button);
+        Button closeButton = view.findViewById(R.id.close_food_popup_button);
         parentLayout.removeView(closeButton);
         parentLayout.addView(closeButton); // so button is replaced on the bottom
         // close popup when button is clicked

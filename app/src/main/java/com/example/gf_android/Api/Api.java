@@ -12,8 +12,10 @@ import com.example.gf_android.Api.Types.UpdateInsertMsg;
 import com.example.gf_android.Api.Types.Utente;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -89,7 +91,10 @@ public class Api {
     }
 
     public static UpdateInsertMsg addFoodInventory(int idInventory, int idAlimento, int grammi, Date dataScadenza, boolean essenziale) {
-        Call<UpdateInsertMsg> call = apiService.addFoodInventory(idInventory, idAlimento, grammi, dataScadenza, essenziale);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        Call<UpdateInsertMsg> call = apiService.addFoodInventory(idInventory, idAlimento, grammi, dateFormat.format(dataScadenza), essenziale);
         UpdateInsertMsg updateInsertMsg = getApiResponse(call);
         if (updateInsertMsg != null) {
             return updateInsertMsg;

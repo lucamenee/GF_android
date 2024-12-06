@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this, R.raw.app_intro);
         mediaPlayer.start();
 
+
         // getting user info from loginActivity intent
         intent = getIntent();
         idUtente = intent.getIntExtra("id_utente", 0);
@@ -61,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
         inventario = Api.inventory(idInventario);
         helloMsg.setText("Ciao @" + Api.getUser(idUtente).username);
 
-        // TODO: showing food in user inventoro
+        // TODO: showing food in user inventory
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // 3 colonne
 
-        adapter = new AlimentoAdapter(this, inventario);
+        adapter = new AlimentoAdapter(this, inventario, Api.getUser(idUtente));
         recyclerView.setAdapter(adapter);
 
         int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
@@ -82,10 +83,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         FloatingActionButton fab = findViewById(R.id.fab_add_Alimento);
-        fab.setOnClickListener(v -> AddAlimento.showAddProductDialog(MainActivity.this));
+        fab.setOnClickListener(v -> AddAlimento.showAddProductDialog(MainActivity.this, this));
 
 
 
+    }
+
+
+
+    @Override
+    public void onUpdate() {
+        inventario = Api.inventory(idInventario);
+        adapter.updateData(inventario);
     }
 
 
