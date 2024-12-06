@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // 3 colonne
 
-        adapter = new AlimentoAdapter(this, inventario);
+        adapter = new AlimentoAdapter(this, inventario, Api.getUser(idUtente));
         recyclerView.setAdapter(adapter);
 
 

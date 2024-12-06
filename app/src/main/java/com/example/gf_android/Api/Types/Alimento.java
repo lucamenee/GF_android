@@ -20,6 +20,7 @@ public class Alimento {
     public Date data_inserimento;
     public boolean essenziale;
     public int id_riga_inventario;
+    public int id_inventario;
 
     public int expiresIn() {
         return (int) ((data_scadenza.getTime() - new Date().getTime()) / 1000 / 60 / 60 / 24);

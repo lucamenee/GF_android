@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gf_android.Api.Types.Alimento;
+import com.example.gf_android.Api.Types.Utente;
 
 import java.util.List;
 
@@ -21,11 +22,13 @@ public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.Alimen
 
     private Context context;
     private List<Alimento> alimentoList;
+    private  Utente user;
 
-    public AlimentoAdapter(Context context, List<Alimento> alimentoList)
+    public AlimentoAdapter(Context context, List<Alimento> alimentoList, Utente user)
     {
         this.context = context;
         this.alimentoList = alimentoList;
+        this.user = user;
     }
 
     @NonNull
@@ -98,7 +101,7 @@ public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.Alimen
         // Imposta il click listener
         holder.itemView.setOnClickListener(v -> {
             FoodPopUp foodPopUp = new FoodPopUp();
-            foodPopUp.setAlimento(alimento);
+            foodPopUp.setData(alimento, this.user);
             foodPopUp.setOnUpdateListener((MainActivity) context);
             foodPopUp.show(((MainActivity) context).getSupportFragmentManager(), "foodPopUp");
         });
