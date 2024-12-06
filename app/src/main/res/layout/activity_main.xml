@@ -30,8 +30,6 @@
 
 
     <!-- Button "Suggeriscimi una ricetta" -->
-
-    <!-- Grid inventario -->
     <Button
         android:id="@+id/btn_suggerisci"
         style="@style/LightBlueButton"
@@ -46,13 +44,28 @@
         android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
+    <!-- Grid inventario -->
+    <GridView
+        android:id="@+id/gridview"
+        android:numColumns="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_suggerisci"
+        android:layout_margin="8dp"
+        android:scrollbars="vertical"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
+        android:stretchMode="columnWidth" />
+
+
+    <!--
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_suggerisci"
         android:layout_margin="8dp"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical" /> -->
 
     <!-- Lower button bar -->
     <LinearLayout

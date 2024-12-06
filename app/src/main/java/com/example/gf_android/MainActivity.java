@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
         helloMsg.setText("Ciao @" + Api.getUser(idUtente).username);
 
         // TODO: showing food in user inventory
-        recyclerView = findViewById(R.id.recyclerView);
+        /*recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // 3 colonne
 
         adapter = new AlimentoAdapter(this, inventario, Api.getUser(idUtente));
@@ -73,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
         int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
         int numberOfColumns = 3;
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(numberOfColumns, screenWidth, true));
+*/
+        GridView gridView = findViewById(R.id.gridview);
+        AlimentoAdapter adapter = new AlimentoAdapter(this, inventario, Api.getUser(idUtente));
+        gridView.setAdapter(adapter);
 
         // suggesting recipes
         btnSuggerisci.setOnClickListener(view -> {
