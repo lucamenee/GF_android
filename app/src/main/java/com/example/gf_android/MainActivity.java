@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onUpdate() {
         inventario = Api.inventory(idInventario);

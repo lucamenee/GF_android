@@ -142,7 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:backgroundTint="@color/primary_color"
             android:text="Login"
             android:textColor="@android:color/white"
             android:layout_marginBottom="10dp" />
@@ -158,7 +158,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Registrati"
-            android:backgroundTint="@color/colorPrimaryVariant"
+            android:backgroundTint="@color/primary_dark_color"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
