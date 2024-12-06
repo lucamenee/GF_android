@@ -1,6 +1,7 @@
 package com.example.gf_android;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this, R.raw.app_intro);
         mediaPlayer.start();
 
-
         // getting user info from loginActivity intent
         intent = getIntent();
         idUtente = intent.getIntExtra("id_utente", 0);
@@ -68,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
         adapter = new AlimentoAdapter(this, inventario);
         recyclerView.setAdapter(adapter);
 
-        int spacing = 10;
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, spacing, true));
+        int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        // Numero di colonne
+        int numberOfColumns = 3;
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(numberOfColumns, screenWidth, true));
 
         // suggesting recipes
         btnSuggerisci.setOnClickListener(view -> {
