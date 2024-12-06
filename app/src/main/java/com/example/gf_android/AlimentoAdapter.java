@@ -68,7 +68,7 @@ public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.Alimen
 
         // Imposta la quantità
         if (alimento.getPeso_unitario() != 0) {
-            holder.textViewQuantita.setText(String.valueOf(alimento.getGrammi() / alimento.getPeso_unitario()));
+            holder.textViewQuantita.setText(String.valueOf(alimento.getGrammi() / alimento.getPeso_unitario())); //boh ce un problema ma non ciò più cazzi per oggi
         } else {
             holder.textViewQuantita.setText(String.valueOf(alimento.getGrammi()) + " g");
         }

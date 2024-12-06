@@ -19,7 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnUpdatesListener {
 
     List<Alimento> inventario;
     List<Alimento> allAlimenti;
@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
         adapter = new AlimentoAdapter(this, inventario, Api.getUser(idUtente));
         recyclerView.setAdapter(adapter);
 
+
         int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-        // Numero di colonne
         int numberOfColumns = 3;
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(numberOfColumns, screenWidth, true));
 
@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
 
     @Override
