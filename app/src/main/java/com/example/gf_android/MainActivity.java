@@ -1,6 +1,7 @@
 package com.example.gf_android;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,8 +70,9 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
         recyclerView.setAdapter(adapter);
 
 
-        int spacing = 20;
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, spacing, true));
+        int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        int numberOfColumns = 3;
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(numberOfColumns, screenWidth, true));
 
         // suggesting recipes
         btnSuggerisci.setOnClickListener(view -> {

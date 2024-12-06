@@ -57,25 +57,15 @@ public class AlimentoAdapter extends RecyclerView.Adapter<AlimentoAdapter.Alimen
         // Cambia il colore del container in base ai giorni mancanti
         if (giorni > 7) {
             holder.container.setCardBackgroundColor(ContextCompat.getColor(context, R.color.buono)); // Colore verde
-        } else if (giorni > 0) {
+        } else if (giorni > 0 || giorni == 0) {
             holder.container.setCardBackgroundColor(ContextCompat.getColor(context, R.color.quasiscaduto)); // Colore giallo
         } else {
             holder.container.setCardBackgroundColor(ContextCompat.getColor(context, R.color.scaduto)); // Colore rosso
         }
 
-        /* NON FUNZIONA
-        // Aggiungi il bordo solo se essenziale
-        if (alimento.isEssenziale()) {
-            // Applica un bordo se l'alimento è essenziale
-            holder.container.setBackgroundResource(R.drawable.border_cardview); // Usa il layer con il bordo
-        } else {
-            // Non applicare il bordo, ma lascia il colore di sfondo
-            holder.container.setBackgroundResource(0); // Nessun bordo
-        }*/
-
         // Imposta la quantità
         if (alimento.getPeso_unitario() != 0) {
-            holder.textViewQuantita.setText(String.valueOf(alimento.getGrammi() / alimento.getPeso_unitario()));
+            holder.textViewQuantita.setText(String.valueOf(alimento.getGrammi() / alimento.getPeso_unitario())); //boh ce un problema ma non ciò più cazzi per oggi
         } else {
             holder.textViewQuantita.setText(String.valueOf(alimento.getGrammi()) + " g");
         }
