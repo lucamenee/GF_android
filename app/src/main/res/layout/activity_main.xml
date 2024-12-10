@@ -8,13 +8,23 @@
     tools:context=".MainActivity">
 
     <!-- Upper bar -->
+
+
+    <!-- Button "Suggeriscimi una ricetta" -->
     <LinearLayout
+        android:id="@+id/upper_bar"
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:background="#90CAF9"
         android:orientation="horizontal"
-        android:padding="16dp"
-        android:id="@+id/upper_bar">
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_profile_img" />
 
         <TextView
             android:id="@+id/hello_msg"
@@ -28,8 +38,6 @@
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
-
-    <!-- Button "Suggeriscimi una ricetta" -->
     <Button
         android:id="@+id/btn_suggerisci"
         style="@style/LightBlueButton"

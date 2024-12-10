@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 import com.example.gf_android.Api.Types.Alimento;
@@ -41,8 +42,6 @@ public class AddAlimento {
         final EditText Quantity = dialogView.findViewById(R.id.et_quantity);
         final CheckBox Essential = dialogView.findViewById(R.id.cb_essential);
 
-
-
         List<Alimento> productNames = getAlimenti();
         ArrayAdapter<Alimento> adapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_item, productNames
@@ -67,6 +66,7 @@ public class AddAlimento {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+                boolean isUnit = false;
                 Alimento selectedProduct =  (Alimento) spinnerProductName.getSelectedItem();
                 String productName = selectedProduct != null ? selectedProduct.nome_alimento : "";
 
