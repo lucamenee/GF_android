@@ -69,7 +69,7 @@ public class ProfileActivity extends AppCompatActivity {
             // Crea dinamicamente un TextView per ogni giorno
             TextView dayView = new TextView(this);
             dayView.setText(day);
-            dayView.setTextSize(14);
+            dayView.setTextSize(11);
             dayView.setPadding(16, 8, 16, 8);
 
 

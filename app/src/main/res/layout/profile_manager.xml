@@ -11,17 +11,16 @@
     <!-- Profilo Utente -->
 
 
-
     <ImageView
         android:id="@+id/profile_image"
         android:layout_width="113dp"
         android:layout_height="134dp"
-        android:layout_marginStart="76dp"
+        android:layout_marginStart="44dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_profile_img"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="83dp" />
+        tools:layout_editor_absoluteY="88dp" />
 
     <TextView
         android:id="@+id/username_text"
@@ -64,25 +63,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="312dp"
+        android:layout_marginTop="68dp"
         android:text="@string/progress_max"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/today_goal_progress"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="332dp" />
+        app:layout_constraintEnd_toEndOf="@+id/today_goal_progress"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/progress_min"
+        app:layout_constraintTop_toBottomOf="@+id/today_goal_label"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/progress_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="68dp"
         android:text="0"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/today_goal_progress"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="@+id/today_goal_progress"
+        app:layout_constraintTop_toBottomOf="@+id/today_goal_label"
+        tools:ignore="MissingConstraints" />
 
     <ProgressBar
         android:id="@+id/today_goal_progress"
@@ -125,7 +126,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/weekly_results_label" />
 
