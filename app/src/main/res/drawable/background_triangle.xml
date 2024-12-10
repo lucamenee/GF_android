@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:startColor="@color/green_logo"
+        android:endColor="@color/blu_logo"
+        android:angle="90.0" />
+</shape>
 
-</selector>
+<!-- pensavi ci fossero triangoli, invece non riesco a farli lol -->

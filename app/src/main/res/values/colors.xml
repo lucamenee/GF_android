@@ -8,6 +8,10 @@
     <color name="accent_color">#2196F3</color>
     <color name="primary_dark_color">#2196F3</color>
 
+    <color name="green_logo">#1BFDC4</color>
+    <color name="blu_logo">#07142B</color>
+
+
     <color name="remove">#B84B4B</color>
     <color name="update">#C59D53</color>
 

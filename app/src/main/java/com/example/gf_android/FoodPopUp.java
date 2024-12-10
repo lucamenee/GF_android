@@ -116,7 +116,6 @@ public class FoodPopUp extends DialogFragment {
                 }
             });
 
-
         }
 
         return view;

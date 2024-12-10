@@ -8,11 +8,10 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gf_android.Api.*;
 import com.example.gf_android.Api.Types.*;
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
     TextView helloMsg;
 
     /* inventario */
-    RecyclerView recyclerView;
     AlimentoAdapter adapter;
 
 
@@ -52,29 +50,28 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
 
 
         // getting user info from loginActivity intent
-        intent = getIntent();
-        idUtente = intent.getIntExtra("id_utente", 0);
-        idInventario = intent.getIntExtra("id_inventario", 0);
-        Log.i("MainActivity", "id_utente: " + idUtente + ", id_inventario: " + idInventario);
+        Intent intent = getIntent();
+        int idUtente = intent.getIntExtra("id_utente", -1);
+        int idInventario = intent.getIntExtra("id_inventario", -1);
+
+        if (idUtente < 0 || idInventario < 0)
+        {
+            Log.e("MainActivity", "Dati mancanti o non validi nell'Intent. id_utente=" + idUtente + ", id_inventario=" + idInventario);
+            Toast.makeText(this, "Errore durante il caricamento", Toast.LENGTH_SHORT).show();
+            finish(); // Termina l'attività
+        }
+        else
+        {
+            Log.e("MainActivity", "Loggato con id_utente=" + idUtente + " e id_inventario=" + idInventario);
+        }
         // TODO: forse bisogna mettere controllo che info da intent siano state ottenute correttamente
 
 
         allAlimenti = Api.getAlimenti();
         inventario = Api.inventory(idInventario);
-        helloMsg.setText("Ciao @" + Api.getUser(idUtente).username);
+        helloMsg.setText("Ciao " + Api.getUser(idUtente).username);
 
         // TODO: showing food in user inventory
-        /*recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // 3 colonne
-
-        adapter = new AlimentoAdapter(this, inventario, Api.getUser(idUtente));
-        recyclerView.setAdapter(adapter);
-
-
-        int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-        int numberOfColumns = 3;
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(numberOfColumns, screenWidth, true));
-*/
         GridView gridView = findViewById(R.id.gridview);
         adapter = new AlimentoAdapter(this, inventario, Api.getUser(idUtente));
         gridView.setAdapter(adapter);

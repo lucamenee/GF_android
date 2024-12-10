@@ -22,7 +22,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button loginButton = findViewById(R.id.loginButton);
+
         loginButton.setOnClickListener(v -> {
+
             EditText editText = findViewById(R.id.username);
             username = editText.getText().toString();;
             EditText editText2 = findViewById(R.id.password);
@@ -38,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i("LoginActivity", "wrong credentials");
             }
         });
+
+        Button registerButton = findViewById(R.id.registrationButton);
+        registerButton.setOnClickListener( v -> { startActivity(new Intent(this, RegistrationActivity.class)); finish(); });
     }
 
 
