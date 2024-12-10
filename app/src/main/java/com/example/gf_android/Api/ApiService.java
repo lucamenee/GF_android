@@ -3,6 +3,7 @@ package com.example.gf_android.Api;
 import com.example.gf_android.Api.Types.Alimento;
 import com.example.gf_android.Api.Types.LoginResponse;
 import com.example.gf_android.Api.Types.ObiettivoSettimana;
+import com.example.gf_android.Api.Types.RegistrationResponse;
 import com.example.gf_android.Api.Types.ResponseMsg;
 import com.example.gf_android.Api.Types.Ricetta;
 import com.example.gf_android.Api.Types.Tag;
@@ -28,8 +29,8 @@ public interface ApiService {
     Call<LoginResponse> login(@Query("username") String username, @Query ("password") String password);
 
     @POST("register")
-    Call<ResponseMsg> register(@Query ("username") String username, @Query ("password") String password,
-                               @Query ("email") String email, @Query ("kcal") int kcal);
+    Call<RegistrationResponse> register(@Query ("username") String username, @Query ("password") String password,
+                                        @Query ("email") String email, @Query ("kcal") int kcal);
 
     @GET("inventory")
     Call<List<Alimento>> inventory(@Query("id_inventario") int idInventory);

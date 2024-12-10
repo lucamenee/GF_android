@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.gf_android.Api.Types.Alimento;
 import com.example.gf_android.Api.Types.LoginResponse;
 import com.example.gf_android.Api.Types.ObiettivoSettimana;
+import com.example.gf_android.Api.Types.RegistrationResponse;
 import com.example.gf_android.Api.Types.ResponseMsg;
 import com.example.gf_android.Api.Types.Ricetta;
 import com.example.gf_android.Api.Types.Tag;
@@ -76,13 +77,9 @@ public class Api {
         return getApiResponse(call);
     }
 
-    public static String register(String username, String password, String email, int kcal) {
-        Call<ResponseMsg> call = apiService.register(username, password, email, kcal);
-        ResponseMsg responseMsg = getApiResponse(call);
-        if (responseMsg != null) {
-            return responseMsg.msg;
-        }
-        return "Error, user wasn't registered";
+    public static RegistrationResponse register(String username, String password, String email, int kcal) {
+        Call<RegistrationResponse> call = apiService.register(username, password, email, kcal);
+        return getApiResponse(call);
     }
 
     public static List<Alimento> inventory(int idInventory) {
@@ -112,6 +109,23 @@ public class Api {
         return getApiResponse(call);
     }
 
+    public static UpdateInsertMsg consumeFood(int idRigaInventario, int grammi, int idUtente) {
+        Call<UpdateInsertMsg> call = apiService.consumeFood(idRigaInventario, grammi, idUtente);
+        return getApiResponse(call);
+    }
+
+    // for alimento of idRigaInventario it adds "grammi" grams to it
+    public static UpdateInsertMsg updateFoodQt(int idRigaInventario, int grammi) {
+        Call<UpdateInsertMsg> call = apiService.updateFoodQt(idRigaInventario, grammi);
+        return getApiResponse(call);
+    }
+
+    public static List<Utente> getUsersInInventory(int idInventario) {
+        Call<List<Utente>> call = apiService.getUsersInInventory(idInventario);
+        return getApiResponse(call);
+    }
+
+
 
     /* da testare */
 
@@ -125,26 +139,12 @@ public class Api {
         return getApiResponse(call);
     }
 
-    // for alimento of idRigaInventario it adds "grammi" grams to it
-    public static UpdateInsertMsg updateFoodQt(int idRigaInventario, int grammi) {
-        Call<UpdateInsertMsg> call = apiService.updateFoodQt(idRigaInventario, grammi);
-        return getApiResponse(call);
-    }
-
     public static UpdateInsertMsg updateFoodExpire(int idRigaInventario, Date dataScadenza) {
         Call<UpdateInsertMsg> call = apiService.updateFoodExpire(idRigaInventario, dataScadenza);
         return getApiResponse(call);
     }
 
-    public static UpdateInsertMsg consumeFood(int idRigaInventario, int grammi, int idUtente) {
-        Call<UpdateInsertMsg> call = apiService.consumeFood(idRigaInventario, grammi, idUtente);
-        return getApiResponse(call);
-    }
 
-    public static List<Utente> getUsersInInventory(int idInventario) {
-        Call<List<Utente>> call = apiService.getUsersInInventory(idInventario);
-        return getApiResponse(call);
-    }
 
 
 
