@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gf_android.Api.Api;
 import com.example.gf_android.Api.Types.LoginResponse;
+import com.example.gf_android.Api.Types.RegistrationResponse;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -43,8 +44,9 @@ public class RegistrationActivity extends AppCompatActivity {
                 Toast.makeText(RegistrationActivity.this, "Tutti i campi devono essere compilati!", Toast.LENGTH_SHORT).show();
             } else {
                 obiettivo = Integer.parseInt(ob);
-                String r = Api.register(username, password, email, obiettivo);
+                RegistrationResponse r = Api.register(username, password, email, obiettivo);
 
+                // TODO: fra sistema qua con il tipo nuovo, io ho solo cambiato il tipo di r perchè non desse errore
                 if(!r.equals("Error, user wasn't registered")) {
                     Toast.makeText(RegistrationActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
 

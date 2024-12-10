@@ -52,18 +52,18 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
 
         // getting user info from loginActivity intent
         Intent intent = getIntent();
-        int idUtente = intent.getIntExtra("id_utente", -1);
-        int idInventario = intent.getIntExtra("id_inventario", -1);
+        idUtente = intent.getIntExtra("id_utente", 0);
+        idInventario = intent.getIntExtra("id_inventario", 0);
 
         if (idUtente < 0 || idInventario < 0)
         {
-            Log.e("MainActivity", "Dati mancanti o non validi nell'Intent. id_utente=" + idUtente + ", id_inventario=" + idInventario);
+            Log.i("MainActivity", "Dati mancanti o non validi nell'Intent. id_utente=" + idUtente + ", id_inventario=" + idInventario);
             Toast.makeText(this, "Errore durante il caricamento", Toast.LENGTH_SHORT).show();
             finish(); // Termina l'attività
         }
         else
         {
-            Log.e("MainActivity", "Loggato con id_utente=" + idUtente + " e id_inventario=" + idInventario);
+            Log.i("MainActivity", "Loggato con id_utente=" + idUtente + " e id_inventario=" + idInventario);
         }
         // TODO: forse bisogna mettere controllo che info da intent siano state ottenute correttamente
 
