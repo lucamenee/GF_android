@@ -9,17 +9,8 @@
     tools:context=".ProfileActivity">
 
     <!-- Profilo Utente -->
-    <TextView
-        android:id="@+id/progress_max"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="12dp"
-        android:text="2000"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/today_goal_progress"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="363dp" />
+
+
 
     <ImageView
         android:id="@+id/profile_image"
@@ -34,11 +25,10 @@
 
     <TextView
         android:id="@+id/username_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
-        android:text="Lorenzo Orsato"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,9 +38,8 @@
 
     <TextView
         android:id="@+id/username_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="lollo_2.0"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
         android:textColor="#808080"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/username_text"
@@ -69,6 +58,19 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+    <TextView
+        android:id="@+id/progress_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/progress_max"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/today_goal_progress"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="332dp" />
 
     <TextView
         android:id="@+id/progress_min"
@@ -116,70 +118,29 @@
         app:layout_constraintTop_toBottomOf="@+id/today_goal_progress" />
 
     <LinearLayout
-        android:id="@+id/weekly_results_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weekly_results_label">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="17 ✓"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="18 ✓"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="19 ✓"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="20"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="21 ✓"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="22 ✓"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-    <TextView
         android:id="@+id/weekly_summary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="Hai raggiunto il tuo obiettivo 4 volte negli ultimi 7 giorni!"
-        android:textSize="14sp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.004"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weekly_results_container" />
+        app:layout_constraintTop_toBottomOf="@id/weekly_results_label" />
+
+    <TextView
+        android:id="@+id/summary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:text="Hai raggiunto il tuo obiettivo X volte negli ultimi 7 giorni!"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/weekly_summary_text"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
