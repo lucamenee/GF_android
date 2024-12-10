@@ -88,9 +88,9 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
         ImageView profileImage = findViewById(R.id.profile_image);
         profileImage.setImageResource(R.drawable.ic_profile_img);
         profileImage.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-            intent.putExtra("id_utente", idUtente);
-            startActivity(intent);
+            Intent profileintent = new Intent(MainActivity.this, ProfileActivity.class);
+            profileintent.putExtra("id_utente", idUtente);
+            startActivity(profileintent);
         });
 
         FloatingActionButton fab = findViewById(R.id.fab_add_Alimento);
