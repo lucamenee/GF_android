@@ -1,17 +1,16 @@
 package com.example.gf_android;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gf_android.Api.*;
@@ -85,6 +84,14 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
             RecipesPopUp recipesPopUp = new RecipesPopUp();
             recipesPopUp.setData(idInventario);
             recipesPopUp.show(fragmentRecipes, "recipesPopUp");
+        });
+
+        ImageView profileImage = findViewById(R.id.profile_image);
+        profileImage.setImageResource(R.drawable.ic_profile_img);
+        profileImage.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            intent.putExtra("id_utente", idUtente);
+            startActivity(intent);
         });
 
         FloatingActionButton fab = findViewById(R.id.fab_add_Alimento);

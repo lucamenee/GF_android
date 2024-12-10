@@ -27,10 +27,11 @@
     <!-- Quantity  -->
     <EditText
         android:id="@+id/et_quantity"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Quantità"
         android:inputType="number" />
+
 
     <!-- Essential Checkbox -->
     <CheckBox
