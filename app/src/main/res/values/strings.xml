@@ -11,5 +11,6 @@
     <string name="scade_in">Scade in %1$dg</string>
     <string name="scaduto_da">Scaduto da %1$dg</string>
     <string name="scade_oggi">Scade oggi</string>
+    <string name="progress_max"> %1$d kcal</string>
 
 </resources>
