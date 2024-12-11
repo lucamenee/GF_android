@@ -6,12 +6,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gf_android.Api.Api;
+import com.example.gf_android.Api.Types.ObiettivoSettimana;
+import com.example.gf_android.Api.Types.Utente;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -28,18 +32,19 @@ public class ProfileActivity extends AppCompatActivity {
         idUtente = intent.getIntExtra("id_utente", 0);
 
 
-
+        List<ObiettivoSettimana> obiettiviSettimana = Api.getObiettivoPerGiorno(idUtente);
         ImageView profileImage = findViewById(R.id.profile_image);
         TextView usernameText = findViewById(R.id.username_text);
         TextView useremail = findViewById(R.id.username_id);
         ProgressBar progressBar = findViewById(R.id.today_goal_progress);
         TextView minProgressText = findViewById(R.id.progress_min);
         TextView maxProgressText = findViewById(R.id.progress_max);
-        LinearLayout weeklySummaryText = findViewById(R.id.weekly_summary_text);
 
-        String userName = Api.getUser(idUtente).username;
-        String email = Api.getUser(idUtente).email;
-        int dailyGoal = Api.getUser(idUtente).obiettivo_kcal;
+
+        Utente user = Api.getUser(idUtente);
+        String userName = user.username;
+        String email = user.email;
+        int dailyGoal = user.obiettivo_kcal;
         int currentProgress = 800;
 
         usernameText.setText(userName);
@@ -51,7 +56,6 @@ public class ProfileActivity extends AppCompatActivity {
         maxProgressText.setText(String.valueOf(dailyGoal));
 
 
-
         profileImage.setImageResource(R.drawable.ic_profile_img);
 
         profileImage.setOnClickListener(view -> {
@@ -60,52 +64,47 @@ public class ProfileActivity extends AppCompatActivity {
             finish();
         });
 
-        //Calcola i giorni della settimana corrente
-        String[] weekDays = getWeekDays();
 
-        int goalsAchieved = 0;
-
-        for (String day : weekDays) {
-            // Crea dinamicamente un TextView per ogni giorno
-            TextView dayView = new TextView(this);
-            dayView.setText(day);
-            dayView.setTextSize(11);
-            dayView.setPadding(16, 8, 16, 8);
-
-
-            boolean isAchieved = Math.random() > 0.5; // TODO: Sostituisci con la logica vera e propria
-            if (isAchieved) {
-                dayView.setText(day + " ✓");
-                goalsAchieved++;
-            }
-
-            // Aggiungi il TextView al LinearLayout
-            weeklySummaryText.addView(dayView);
+        if (obiettiviSettimana != null) {
+            aggiornaVistaSettimana(obiettiviSettimana);
+        } else {
+            Toast.makeText(this, "Errore nel caricamento dei dati", Toast.LENGTH_SHORT).show();
         }
 
-
-        TextView summaryText = findViewById(R.id.summary_text);
-        summaryText.setText(String.format(
-                Locale.getDefault(),
-                "Hai raggiunto il tuo obiettivo %d volte negli ultimi 7 giorni!",
-                goalsAchieved
-        ));
     }
+    private void aggiornaVistaSettimana(List<ObiettivoSettimana> obiettiviSettimana) {
+        LinearLayout weekly_summary_text = findViewById(R.id.weekly_summary_text);
 
-    // Metodo per ottenere i giorni della settimana corrente
-    private String[] getWeekDays() {
-        String[] weekDays = new String[7];
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd", Locale.ITALIAN);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        for (ObiettivoSettimana obiettivo : obiettiviSettimana) {
+            TextView TestoObiettivo = new TextView(this);
+            TestoObiettivo.setText(dateFormat.format(obiettivo.data_consumazione));
+            TestoObiettivo.setTextSize(14);
+            TestoObiettivo.setPadding(16, 8, 16, 8);
 
-        for (int i = 0; i < 7; i++) {
-            weekDays[i] = dateFormat.format(calendar.getTime());
-            calendar.add(Calendar.DAY_OF_MONTH, 1);
+            if (obiettivo.obiettivo_raggiunto) {
+                TestoObiettivo.setText(TestoObiettivo.getText() + " ✓");
+                TestoObiettivo.setTextColor(getColor(R.color.buono));
+            }else{
+                TestoObiettivo.setTextColor(getColor(R.color.quasiscaduto));
+            }
+
+            weekly_summary_text.addView(TestoObiettivo);
         }
-
-        return weekDays;
+        aggiornaRiepilogo(obiettiviSettimana);
     }
 
+    private void aggiornaRiepilogo(List<ObiettivoSettimana> obiettiviSettimana) {
+        int obiettiviRaggiunti = 0;
+
+        for (ObiettivoSettimana obiettivo : obiettiviSettimana) {
+            if (obiettivo.obiettivo_raggiunto) {
+                obiettiviRaggiunti++;
+            }
+        }
+
+        TextView summaryText = findViewById(R.id.summary_text);
+        summaryText.setText("Hai raggiunto il tuo obiettivo " + obiettiviRaggiunti + " volte negli ultimi 7 giorni!");
+    }
 }

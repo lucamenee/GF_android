@@ -43,7 +43,7 @@ public interface ApiService {
     @GET("user")
     Call<Utente> getUser(@Query("id_utente") int idUtente);
 
-    @GET("daysGoalRecahed")
+    @GET("daysGoalReached")
     Call<List<ObiettivoSettimana>> getObiettivoPerGiorno(@Query("id_utente") int idUtente);
 
     @POST("updateUserInfo")
