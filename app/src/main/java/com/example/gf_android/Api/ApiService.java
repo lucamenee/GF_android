@@ -63,4 +63,7 @@ public interface ApiService {
 
     @GET("getUsersInInventory")
     Call<List<Utente>> getUsersInInventory(@Query("id_inventario") int idInventario);
+
+    @GET("userTodaysCalories")
+    Call<Integer> userTodaysCalories(@Query("id_utente") int idUtente);
 }

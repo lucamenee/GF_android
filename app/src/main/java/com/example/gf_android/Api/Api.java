@@ -144,6 +144,11 @@ public class Api {
         return getApiResponse(call);
     }
 
+    public static Integer userTodaysCalories(int idUtente) {
+        Call<Integer> call = apiService.userTodaysCalories(idUtente);
+        return getApiResponse(call);
+    }
+
 
 
 
