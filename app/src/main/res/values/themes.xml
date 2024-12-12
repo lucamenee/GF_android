@@ -8,8 +8,8 @@
     <style name="Theme.GF_android" parent="Base.Theme.GF_android" />
     <!-- Custom button style -->
     <style name="LightBlueButton">
-        <item name="backgroundTint">#5CB4D3</item>
-        <item name="color">@android:color/white</item>
+        <item name="backgroundTint">@color/blu_logo</item>
+        <item name="color">@color/green_logo</item>
         <item name="android:textStyle">bold</item>
     </style>
 

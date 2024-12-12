@@ -40,35 +40,52 @@ public class RegistrationActivity extends AppCompatActivity {
             String ob = obiettivoEditText.getText().toString();
             int obiettivo = 0;
 
-            if (email.isEmpty() || username.isEmpty() || password.isEmpty() || ob.isEmpty()) {
+            if (email.isEmpty() || username.isEmpty() || password.isEmpty() || ob.isEmpty())
+            {
                 Toast.makeText(RegistrationActivity.this, "Tutti i campi devono essere compilati!", Toast.LENGTH_SHORT).show();
-            } else {
+            }
+            else
+            {
                 obiettivo = Integer.parseInt(ob);
                 RegistrationResponse r = Api.register(username, password, email, obiettivo);
 
-                // TODO: fra sistema qua con il tipo nuovo, io ho solo cambiato il tipo di r perchè non desse errore
-                if(!r.equals("Error, user wasn't registered")) {
+                if (r == null)
+                {
+                    Toast.makeText(RegistrationActivity.this, "Errore: risposta del server non valida.", Toast.LENGTH_SHORT).show();
+                    Log.i("RegistrationActivity", "Api.register ha restituito null");
+                }
+                else if(r.status > 199 && r.status < 300)
+                {
                     Toast.makeText(RegistrationActivity.this, "Registrazione completata!", Toast.LENGTH_SHORT).show();
 
-                    // Pulisci i campi dopo la registrazione
+
                     emailEditText.setText("");
                     usernameEditText.setText("");
                     passwordEditText.setText("");
                     obiettivoEditText.setText("");
 
                     LoginResponse lr = Api.login(username, password);
-                    if (lr != null) {
+                    if (lr != null)
+                    {
                         startActivity(new Intent(this, MainActivity.class)
                                 .putExtra("id_utente", lr.id_utente)
                                 .putExtra("id_inventario", lr.id_inventario));
                         finish();
-                    } else {
-                        // Se login fallisce, logga il problema
-                        Log.i("RegistrationActivity", "Errore, per qualche motivo le credenziali sono sbagliate");
+                    }
+                    else
+                    {
+                        Log.i("RegistrationActivity", "Errore lr null");
                         Toast.makeText(RegistrationActivity.this, "Login fallito!", Toast.LENGTH_SHORT).show();
                     }
                 }
-                else Toast.makeText(RegistrationActivity.this, "Errore! Non registrato", Toast.LENGTH_SHORT).show();
+                else if(r.status > 299 && r.status < 400)
+                {
+
+                    usernameEditText.setText("");
+                    Toast.makeText(RegistrationActivity.this, r.msg, Toast.LENGTH_SHORT).show();
+                    Log.i("RegistrationActivity", r.status + " " + r.msg);
+                }
+                else Toast.makeText(RegistrationActivity.this, r.msg, Toast.LENGTH_SHORT).show();
             }
         });
     }
