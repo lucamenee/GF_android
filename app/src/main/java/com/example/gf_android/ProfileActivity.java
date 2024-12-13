@@ -2,6 +2,7 @@ package com.example.gf_android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.SurfaceView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -41,11 +42,12 @@ public class ProfileActivity extends AppCompatActivity {
         TextView maxProgressText = findViewById(R.id.progress_max);
 
 
+
         Utente user = Api.getUser(idUtente);
         String userName = user.username;
         String email = user.email;
         int dailyGoal = user.obiettivo_kcal;
-        int currentProgress = 800;
+        int currentProgress = Api.userTodaysCalories(idUtente);
 
         usernameText.setText(userName);
         useremail.setText(email);
@@ -54,6 +56,8 @@ public class ProfileActivity extends AppCompatActivity {
         progressBar.setProgress(currentProgress);
         minProgressText.setText("0");
         maxProgressText.setText(String.valueOf(dailyGoal));
+
+
 
 
         profileImage.setImageResource(R.drawable.ic_profile_img);
