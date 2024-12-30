@@ -15,7 +15,7 @@
         android:layout_height="425dp"
         app:srcCompat="@drawable/triangle"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-14dp"
+        tools:layout_editor_absoluteX="-16dp"
         tools:layout_editor_absoluteY="-5dp" />
 
     <ImageView
@@ -150,6 +150,17 @@
         app:layout_constraintTop_toBottomOf="@+id/weekly_summary_text"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp" />
+
+    <ImageView
+        android:id="@+id/profile_edit"
+        android:layout_width="56dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toEndOf="@+id/today_goal_label"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image"
+        app:srcCompat="@drawable/ic_edit_profile" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
