@@ -1,7 +1,10 @@
 package com.example.gf_android;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -39,13 +42,16 @@ public class ProfileActivity extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.today_goal_progress);
         TextView minProgressText = findViewById(R.id.progress_min);
         TextView maxProgressText = findViewById(R.id.progress_max);
+        ImageView profileEdit = findViewById(R.id.profile_edit);
 
+
+        profileEdit.setOnClickListener(v -> showEditProfileDialog());
 
         Utente user = Api.getUser(idUtente);
         String userName = user.username;
         String email = user.email;
         int dailyGoal = user.obiettivo_kcal;
-        int currentProgress = 800;
+        int currentProgress = Api.userTodaysCalories(idUtente);
 
         usernameText.setText(userName);
         useremail.setText(email);
@@ -54,6 +60,8 @@ public class ProfileActivity extends AppCompatActivity {
         progressBar.setProgress(currentProgress);
         minProgressText.setText("0");
         maxProgressText.setText(String.valueOf(dailyGoal));
+
+
 
 
         profileImage.setImageResource(R.drawable.ic_profile_img);
@@ -106,5 +114,49 @@ public class ProfileActivity extends AppCompatActivity {
 
         TextView summaryText = findViewById(R.id.summary_text);
         summaryText.setText("Hai raggiunto il tuo obiettivo " + obiettiviRaggiunti + " volte negli ultimi 7 giorni!");
+    }
+
+    private void showEditProfileDialog() {
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_edit_profile, null);
+
+        EditText editObiettivo = dialogView.findViewById(R.id.editObiettivo);
+        EditText editEmail = dialogView.findViewById(R.id.edit_email);
+
+
+        // Prefill the fields with existing data (optional)
+        Utente user = Api.getUser(idUtente);
+
+        editObiettivo.setText(user.obiettivo_kcal + "");
+        editEmail.setText(user.email);
+
+
+        new AlertDialog.Builder(this)
+                .setTitle("Edit Profile")
+                .setView(dialogView)
+                .setPositiveButton("Save", (dialog, which) -> {
+                    String newObiettivo =editObiettivo.getText().toString().trim();
+                    String newEmail = editEmail.getText().toString().trim();
+                    //String newPassword = editPassword.getText().toString().trim();
+
+
+                    saveProfileChanges(newEmail, newObiettivo);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
+    private void saveProfileChanges(String email, String obiettivo) {
+
+        TextView usernameText = findViewById(R.id.username_text);
+        TextView useremail = findViewById(R.id.username_id);
+
+        usernameText.setText(email);
+        useremail.setText(obiettivo);
+
+        int obiettivoInt = Integer.parseInt(obiettivo);
+
+        Utente user = Api.getUser(idUtente);
+
+        Api.updateUserInfo(idUtente, obiettivoInt, email, user.id_inventario);
     }
 }
