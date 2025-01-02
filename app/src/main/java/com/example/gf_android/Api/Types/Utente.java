@@ -11,6 +11,7 @@ public class Utente {
     public String email;
     public int obiettivo_kcal;
     public int id_inventario;
+    public int id_inventario_og;
 
     @NonNull
     public String toString() {

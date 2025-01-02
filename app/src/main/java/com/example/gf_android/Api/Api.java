@@ -8,6 +8,7 @@ import com.example.gf_android.Api.Types.ObiettivoSettimana;
 import com.example.gf_android.Api.Types.RegistrationResponse;
 import com.example.gf_android.Api.Types.ResponseMsg;
 import com.example.gf_android.Api.Types.Ricetta;
+import com.example.gf_android.Api.Types.SearchInventoryMsg;
 import com.example.gf_android.Api.Types.Tag;
 import com.example.gf_android.Api.Types.UpdateInsertMsg;
 import com.example.gf_android.Api.Types.Utente;
@@ -146,6 +147,11 @@ public class Api {
 
     public static Integer userTodaysCalories(int idUtente) {
         Call<Integer> call = apiService.userTodaysCalories(idUtente);
+        return getApiResponse(call);
+    }
+
+    public static SearchInventoryMsg searchInventory(String username) {
+        Call<SearchInventoryMsg> call = apiService.searchInventory(username);
         return getApiResponse(call);
     }
 

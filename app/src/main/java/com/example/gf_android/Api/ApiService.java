@@ -6,6 +6,7 @@ import com.example.gf_android.Api.Types.ObiettivoSettimana;
 import com.example.gf_android.Api.Types.RegistrationResponse;
 import com.example.gf_android.Api.Types.ResponseMsg;
 import com.example.gf_android.Api.Types.Ricetta;
+import com.example.gf_android.Api.Types.SearchInventoryMsg;
 import com.example.gf_android.Api.Types.Tag;
 import com.example.gf_android.Api.Types.UpdateInsertMsg;
 import com.example.gf_android.Api.Types.Utente;
@@ -66,4 +67,7 @@ public interface ApiService {
 
     @GET("userTodaysCalories")
     Call<Integer> userTodaysCalories(@Query("id_utente") int idUtente);
+
+    @GET("searchInventory")
+    Call<SearchInventoryMsg> searchInventory(@Query("username") String username);
 }
