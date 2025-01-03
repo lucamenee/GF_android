@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,9 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton$InspectionCompanion;
 
 import com.example.gf_android.Api.Api;
 import com.example.gf_android.Api.Types.ObiettivoSettimana;
+import com.example.gf_android.Api.Types.SearchInventoryMsg;
+import com.example.gf_android.Api.Types.UpdateInsertMsg;
 import com.example.gf_android.Api.Types.Utente;
 
 import java.text.SimpleDateFormat;
@@ -43,6 +47,8 @@ public class ProfileActivity extends AppCompatActivity {
         TextView minProgressText = findViewById(R.id.progress_min);
         TextView maxProgressText = findViewById(R.id.progress_max);
         ImageView profileEdit = findViewById(R.id.profile_edit);
+        TextView inventoryMsg = findViewById(R.id.inventory_msg);
+        Button changeInvBtn = findViewById(R.id.change_btn);
 
 
         profileEdit.setOnClickListener(v -> showEditProfileDialog());
@@ -60,6 +66,22 @@ public class ProfileActivity extends AppCompatActivity {
         progressBar.setProgress(currentProgress);
         minProgressText.setText("0");
         maxProgressText.setText(String.valueOf(dailyGoal));
+
+        inventoryMsg.setText("Partecipi all'inventario di: @" + user.proprietario);
+        changeInvBtn.setOnClickListener(v -> {
+            TextView ownerUsernameTxt = findViewById(R.id.username_owner);
+            String ownerUsername = ownerUsernameTxt.getText().toString();
+            SearchInventoryMsg siMsg = Api.searchInventory(ownerUsername);
+
+            if (siMsg.code >= 300 && siMsg.code < 400) {
+                UpdateInsertMsg upMsg = Api.updateUserInfo(user.id_utente, user.obiettivo_kcal, user.email, siMsg.id_inventario_og);
+                startActivity(new Intent(this, MainActivity.class).putExtra("id_utente", user.id_utente).putExtra( "id_inventario", siMsg.id_inventario_og));
+
+                Toast.makeText(this, "Aggiornamento effettuato", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, siMsg.msg, Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
 

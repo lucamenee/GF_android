@@ -12,6 +12,7 @@ public class Utente {
     public int obiettivo_kcal;
     public int id_inventario;
     public int id_inventario_og;
+    public String proprietario;
 
     @NonNull
     public String toString() {

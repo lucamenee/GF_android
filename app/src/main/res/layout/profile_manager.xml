@@ -163,4 +163,48 @@
         app:srcCompat="@drawable/ic_edit_profile" />
 
 
+
+    <!-- Inventario -->
+
+    <TextView
+        android:id="@+id/inventory_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="48dp"
+        android:text="Partecipi all'inventario di: "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/summary_text"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <TextView
+        android:id="@+id/change_inventory"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="Partecipa all'inventario di:"
+        app:layout_constraintTop_toBottomOf="@id/inventory_msg"
+        tools:layout_editor_absoluteX="16dp"
+        android:layout_marginTop="40dp"
+        tools:ignore="MissingConstraints"/>
+
+    <EditText
+        android:id="@+id/username_owner"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toBottomOf="@id/change_inventory"
+        tools:layout_editor_absoluteX="16dp"
+        tools:ignore="MissingConstraints"/>
+
+    <Button
+        android:id="@+id/change_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Entra"
+        app:layout_constraintStart_toEndOf="@+id/username_owner"
+        app:layout_constraintTop_toBottomOf="@+id/change_inventory" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

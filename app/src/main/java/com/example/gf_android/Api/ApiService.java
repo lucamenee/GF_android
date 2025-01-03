@@ -68,6 +68,6 @@ public interface ApiService {
     @GET("userTodaysCalories")
     Call<Integer> userTodaysCalories(@Query("id_utente") int idUtente);
 
-    @GET("searchInventory")
+    @GET("inventoryOg")
     Call<SearchInventoryMsg> searchInventory(@Query("username") String username);
 }
