@@ -96,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
         FloatingActionButton fab = findViewById(R.id.fab_add_Alimento);
         fab.setOnClickListener(v -> AddAlimento.showAddProductDialog(MainActivity.this, this));
 
+        FloatingActionButton fab_filter = findViewById(R.id.fab_filter_Alimento);
+        fab_filter.setOnClickListener(v -> OrdinamentActivity.showOrderDialog(MainActivity.this, this));
 
 
     }

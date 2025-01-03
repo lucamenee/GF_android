@@ -168,12 +168,9 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void saveProfileChanges(String email, String obiettivo) {
+        TextView maxProgressText = findViewById(R.id.progress_max);
 
-        TextView usernameText = findViewById(R.id.username_text);
-        TextView useremail = findViewById(R.id.username_id);
-
-        usernameText.setText(email);
-        useremail.setText(obiettivo);
+        maxProgressText.setText(obiettivo);
 
         int obiettivoInt = Integer.parseInt(obiettivo);
 
