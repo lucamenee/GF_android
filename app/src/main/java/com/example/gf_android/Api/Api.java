@@ -88,11 +88,11 @@ public class Api {
         return getApiResponse(call);
     }
 
-    public static UpdateInsertMsg addFoodInventory(int idInventory, int idAlimento, int grammi, Date dataScadenza, boolean essenziale) {
+    public static UpdateInsertMsg addFoodInventory(int idInventory, int idAlimento, int grammi, Date dataScadenza) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
-        Call<UpdateInsertMsg> call = apiService.addFoodInventory(idInventory, idAlimento, grammi, dateFormat.format(dataScadenza), essenziale);
+        Call<UpdateInsertMsg> call = apiService.addFoodInventory(idInventory, idAlimento, grammi, dateFormat.format(dataScadenza));
         UpdateInsertMsg updateInsertMsg = getApiResponse(call);
         if (updateInsertMsg != null) {
             return updateInsertMsg;
@@ -125,10 +125,6 @@ public class Api {
         Call<List<Utente>> call = apiService.getUsersInInventory(idInventario);
         return getApiResponse(call);
     }
-
-
-
-    /* da testare */
 
     public static List<ObiettivoSettimana> getObiettivoPerGiorno(int idUtente) { // da controllare
         Call<List<ObiettivoSettimana>> call = apiService.getObiettivoPerGiorno(idUtente);

@@ -40,7 +40,6 @@ public class AddAlimento {
         final Spinner spinnerProductName = dialogView.findViewById(R.id.et_product_name);
         final  Button btnSelectDate = dialogView.findViewById(R.id.btn_select_date);
         final EditText Quantity = dialogView.findViewById(R.id.et_quantity);
-        final CheckBox Essential = dialogView.findViewById(R.id.cb_essential);
 
         List<Alimento> productNames = getAlimenti();
         ArrayAdapter<Alimento> adapter = new ArrayAdapter<>(
@@ -72,7 +71,6 @@ public class AddAlimento {
 
                 String expirationDate = btnSelectDate.getText().toString();
                 int quantity = Integer.parseInt(Quantity.getText().toString());
-                boolean isEssential = Essential.isChecked();
 
                 if (quantity>0 || selectedProduct!=null || !expirationDate.isEmpty()) {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -80,7 +78,7 @@ public class AddAlimento {
                     try {
                         Date date = dateFormat.parse(expirationDate);
                         // TODO: ricordati la storia dei grammi e del peso unitario
-                        addFoodInventory(MainActivity.idInventario, selectedProduct.id_alimento, quantity, date, isEssential);
+                        addFoodInventory(MainActivity.idInventario, selectedProduct.id_alimento, quantity, date);
                         if (listener != null)
                             listener.onUpdate();
                         Toast.makeText(context, "Prodotto aggiunto: " + productName, Toast.LENGTH_SHORT).show();

@@ -18,7 +18,6 @@ public class Alimento {
     public int grammi;
     public Date data_scadenza;
     public Date data_inserimento;
-    public boolean essenziale;
     public int id_riga_inventario;
     public int id_inventario;
 
@@ -56,7 +55,6 @@ public class Alimento {
         return sdf.format(data_inserimento);
     }
 
-    public boolean isEssenziale() { return essenziale; }
 
     public boolean isExpired() { return  this.data_scadenza.before(new Date()); }
 
