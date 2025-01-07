@@ -15,22 +15,54 @@
         />
 
     <!-- DatePicker  -->
-    <Button
-        android:id="@+id/btn_select_date"
-        style="@style/LightBlueButton"
-
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Data di scadenza"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginTop="17dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data di scadenza"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/btn_select_date"
+            style="@style/LightBlueButton"
+            android:layout_marginStart="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data di scadenza"
+            />
+    </LinearLayout>
 
     <!-- Quantity  -->
-    <EditText
-        android:id="@+id/et_quantity"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Quantità"
-        android:inputType="number" />
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="16dp" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantità"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/et_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Quantità"
+            android:inputType="number"
+            android:layout_marginStart="35dp"/>
+        <TextView
+            android:id="@+id/grams_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="g."
+            android:textSize="18sp"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
 
 
     <!-- Essential Checkbox -->

@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 import com.example.gf_android.Api.Types.Alimento;
+
+import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,6 +39,7 @@ public class AddAlimento {
         View dialogView = inflater.inflate(R.layout.dialog_add_alimento, null);
         builder.setView(dialogView);
 
+        TextView gramsTag = dialogView.findViewById(R.id.grams_tag);
 
         final Spinner spinnerProductName = dialogView.findViewById(R.id.et_product_name);
         final  Button btnSelectDate = dialogView.findViewById(R.id.btn_select_date);
@@ -47,6 +51,32 @@ public class AddAlimento {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerProductName.setAdapter(adapter);
+        // default expiring date: today + alimento.durata_media
+        spinnerProductName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Alimento selectedProduct = (Alimento) parent.getSelectedItem();
+                if (selectedProduct != null) {
+                    int durataMedia = selectedProduct.durata_media; // Assumi che `durata_media` sia un campo di `Alimento`
+                    Calendar defaultDate = Calendar.getInstance();
+                    defaultDate.add(Calendar.DAY_OF_MONTH, durataMedia);
+
+                    btnSelectDate.setText(new SimpleDateFormat("dd/MM/yyyy").format(defaultDate.getTime()));
+
+                    if (selectedProduct.peso_unitario != 0) {
+                        gramsTag.setText("unità");
+                    } else {
+                        gramsTag.setText("g.");
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+
 
         final Calendar calendar = Calendar.getInstance();
         btnSelectDate.setOnClickListener(v -> {
@@ -72,9 +102,11 @@ public class AddAlimento {
                 String expirationDate = btnSelectDate.getText().toString();
                 int quantity = Integer.parseInt(Quantity.getText().toString());
 
-                if (quantity>0 || selectedProduct!=null || !expirationDate.isEmpty()) {
+                if (quantity>0 && selectedProduct!=null && !expirationDate.isEmpty()) {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     Log.i("AddAlimento", "expirationDate: " + expirationDate);
+                    if (selectedProduct.peso_unitario != 0)
+                        quantity *= selectedProduct.peso_unitario;
                     try {
                         Date date = dateFormat.parse(expirationDate);
                         // TODO: ricordati la storia dei grammi e del peso unitario
