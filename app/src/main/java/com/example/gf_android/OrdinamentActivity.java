@@ -3,6 +3,7 @@ package com.example.gf_android;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.gf_android.Api.Api;
 import com.example.gf_android.Api.Types.Alimento;
+import com.example.gf_android.Api.Types.Utente;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,60 +34,38 @@ public class OrdinamentActivity {
         x.add("Crescente");
         x.add("Decrescente");
         x.add("A-Z");
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_item, x
         );
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        orderHomeView.setAdapter(spinnerAdapter);
 
-        List<Alimento> alimentosList = Api.getAlimenti();
-
-        orderHomeView.setAdapter(adapter);
+        List<Alimento> alimentosList = Api.inventory(MainActivity.idInventario);
+        orderHomeView.setAdapter(spinnerAdapter);
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String selectedOrder = orderHomeView.getSelectedItem().toString();
+                String order = orderHomeView.getSelectedItem().toString();
 
-                // Check sorting condition
-                if (selectedOrder.equals("Crescente")) {
-                    Collections.sort(alimentosList, new Comparator<Alimento>() {
-                        @Override
-                        public int compare(Alimento a1, Alimento a2) {
-                            // Use Grammi if greater than 0, otherwise Peso_unitario
-                            int value1 = (a1.getPeso_unitario() > 0) ? a1.getGrammi() : a1.getPeso_unitario();
-                            int value2 = (a2.getPeso_unitario() > 0) ? a2.getGrammi() : a2.getPeso_unitario();
-                            return Integer.compare(value1, value2);
-                        }
-                    });
+                if (order.equals("Crescente")) {
+                    alimentosList.sort(Comparator.comparingInt(Alimento::getGrammi));
+                    Log.i("", alimentosList.toString());
                     Toast.makeText(context, "Ordine Crescente", Toast.LENGTH_SHORT).show();
 
-                } else if (selectedOrder.equals("Decrescente")) {
-                    Collections.sort(alimentosList, new Comparator<Alimento>() {
-                        @Override
-                        public int compare(Alimento a1, Alimento a2) {
-                            // Use Grammi if greater than 0, otherwise Peso_unitario
-                            int value1 = (a1.getPeso_unitario() > 0) ? a1.getGrammi() : a1.getPeso_unitario();
-                            int value2 = (a2.getPeso_unitario() > 0) ? a2.getGrammi() : a2.getPeso_unitario();
-                            return Integer.compare(value2, value1);
-                        }
-                    });
+                } else if (order.equals("Decrescente")) {
+                    alimentosList.sort(Comparator.comparingInt(Alimento::getGrammi).reversed());
                     Toast.makeText(context, "Ordine Decrescente", Toast.LENGTH_SHORT).show();
-
-                } else if (selectedOrder.equals("A-Z")) {
-                    Collections.sort(alimentosList, new Comparator<Alimento>() {
-                        @Override
-                        public int compare(Alimento a1, Alimento a2) {
-                            return a1.getNome().compareToIgnoreCase(a2.getNome());
-                        }
-                    });
+                    Log.i("", alimentosList.toString());
+                } else if (order.equals("A-Z")) {
+                    alimentosList.sort(Comparator.comparing(Alimento::getNome));
                     Toast.makeText(context, "Dalla A alla Z", Toast.LENGTH_SHORT).show();
                 }
 
-                // Notify any adapters if required
-                if (adapter != null) {
-                    adapter.notifyDataSetChanged();
-                }
+                spinnerAdapter.notifyDataSetChanged();
 
-                // Trigger listener update
+
                 if (listener != null) {
                     listener.onUpdate();
                 }
