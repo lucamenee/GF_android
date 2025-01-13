@@ -3,6 +3,8 @@ package com.example.gf_android;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,8 @@ import com.example.gf_android.Api.Types.UpdateInsertMsg;
 import com.example.gf_android.Api.Types.Utente;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -46,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
         ProgressBar progressBar = findViewById(R.id.today_goal_progress);
         TextView minProgressText = findViewById(R.id.progress_min);
         TextView maxProgressText = findViewById(R.id.progress_max);
-        ImageView profileEdit = findViewById(R.id.profile_edit);
+        Button profileEdit = findViewById(R.id.profile_edit);
         TextView inventoryMsg = findViewById(R.id.inventory_msg);
         Button changeInvBtn = findViewById(R.id.change_btn);
 
@@ -59,6 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
         int dailyGoal = user.obiettivo_kcal;
         int currentProgress = Api.userTodaysCalories(idUtente);
 
+        if(email == null) Log.i("ProfileActivity", "errore email null");
         usernameText.setText(userName);
         useremail.setText(email);
 
@@ -67,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity {
         minProgressText.setText("0");
         maxProgressText.setText(String.valueOf(dailyGoal));
 
-        inventoryMsg.setText("Partecipi all'inventario di: @" + user.proprietario);
+        inventoryMsg.setText("Stai convidendo l'inventario con " + user.proprietario);
         changeInvBtn.setOnClickListener(v -> {
             TextView ownerUsernameTxt = findViewById(R.id.username_owner);
             String ownerUsername = ownerUsernameTxt.getText().toString();
@@ -102,7 +107,8 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
     }
-    private void aggiornaVistaSettimana(List<ObiettivoSettimana> obiettiviSettimana) {
+
+    /*private void aggiornaVistaSettimana(List<ObiettivoSettimana> obiettiviSettimana) {
         LinearLayout weekly_summary_text = findViewById(R.id.weekly_summary_text);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd", Locale.ITALIAN);
@@ -122,6 +128,49 @@ public class ProfileActivity extends AppCompatActivity {
 
             weekly_summary_text.addView(TestoObiettivo);
         }
+        aggiornaRiepilogo(obiettiviSettimana);
+    }*/
+
+    private void aggiornaVistaSettimana(List<ObiettivoSettimana> obiettiviSettimana) {
+
+        LinearLayout weeklyResultsCircles = findViewById(R.id.weekly_results_circles);
+
+        // Pulisci eventuali vecchi cerchi
+        weeklyResultsCircles.removeAllViews();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE", Locale.ITALIAN);
+
+        for (ObiettivoSettimana obiettivo : obiettiviSettimana) {
+            TextView circleView = new TextView(this);
+
+            // Ottieni le prime tre lettere del giorno
+            String dayAbbreviation = dateFormat.format(obiettivo.data_consumazione).toUpperCase();
+
+            // Configura il cerchio
+            circleView.setText(dayAbbreviation);
+            circleView.setTextSize(16); // Dimensione del testo
+            circleView.setTextColor(getColor(R.color.white));
+            circleView.setGravity(Gravity.CENTER); // Centra il testo verticalmente e orizzontalmente
+            circleView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER); // Assicura l'allineamento
+
+            // Colore del cerchio (sfondo)
+            if (obiettivo.obiettivo_raggiunto) {
+                circleView.setBackgroundResource(R.drawable.green_circle); // Cerchio verde
+            } else {
+                circleView.setBackgroundResource(R.drawable.blue_circle); // Cerchio blu
+            }
+
+            // Configura le dimensioni e il margine del cerchio
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    120, 120 // Dimensioni fisse del cerchio (120x120 dp)
+            );
+            params.setMargins(8, 0, 8, 0); // Margini tra i cerchi
+            circleView.setLayoutParams(params);
+
+            // Aggiungi il cerchio al layout
+            weeklyResultsCircles.addView(circleView);
+        }
+
         aggiornaRiepilogo(obiettiviSettimana);
     }
 

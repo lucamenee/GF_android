@@ -54,7 +54,7 @@
                 android:text="Data scadenza"
                 android:textStyle="bold" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/textViewScadenza"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,7 +62,20 @@
                 android:layout_marginBottom="8dp"
                 android:text="Scadenza"
                 android:textColor="#000000"
+                android:textSize="16sp" />-->
+
+            <Button
+                android:id="@+id/cambiadata"
+                style="@style/LightBlueButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="false"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="Data"
                 android:textSize="16sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -83,13 +96,13 @@
 
             <TextView
                 android:id="@+id/textViewInserimento"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:layout_marginBottom="8dp"
                 android:text="Inserimento"
                 android:textColor="#000000"
-                android:textSize="16sp"
-                android:layout_gravity="center_horizontal"/>
+                android:textSize="16sp" />
 
         </LinearLayout>
     </LinearLayout>
@@ -219,7 +232,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Rimuovi\nalimento"
+            android:text="Rimuovi"
             android:padding="5dp"/>
 
         <Button

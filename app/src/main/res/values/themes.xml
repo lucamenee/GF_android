@@ -14,11 +14,11 @@
     </style>
 
     <style name="DemoTheme" parent="Base.Theme.GF_android">
-        <item name="colorPrimary">@color/primary_color</item>
-        <item name="colorAccent">@color/accent_color</item>
+        <item name="colorPrimary">@color/blu_logo</item>
+        <item name="colorAccent">@color/blu_logo</item>
 
         <!-- Defining that new color in ColorPrimaryDark -->
-        <item name="colorPrimaryDark">@color/primary_dark_color</item>
+        <item name="colorPrimaryDark">@color/blu_logo</item>
     </style>
 
 

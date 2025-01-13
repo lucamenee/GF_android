@@ -18,7 +18,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private EditText emailEditText, usernameEditText, passwordEditText, obiettivoEditText;
     private Button registerButton;
-
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +27,16 @@ public class RegistrationActivity extends AppCompatActivity {
 
         registerButton = findViewById(R.id.registerButton);
 
+        backButton = findViewById(R.id.backToLoginButton);
+        backButton.setOnClickListener( v -> finish() );
+
         registerButton.setOnClickListener( v -> {
 
             emailEditText = findViewById(R.id.email);
             usernameEditText = findViewById(R.id.username);
             passwordEditText = findViewById(R.id.password);
             obiettivoEditText = findViewById(R.id.obiettivocal);
+
 
             String email = emailEditText.getText().toString();
             String username = usernameEditText.getText().toString();
@@ -80,7 +84,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
                 else if(r.status > 299 && r.status < 400)
                 {
-
                     usernameEditText.setText("");
                     Toast.makeText(RegistrationActivity.this, r.msg, Toast.LENGTH_SHORT).show();
                     Log.i("RegistrationActivity", r.status + " " + r.msg);
@@ -88,5 +91,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 else Toast.makeText(RegistrationActivity.this, r.msg, Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
 }

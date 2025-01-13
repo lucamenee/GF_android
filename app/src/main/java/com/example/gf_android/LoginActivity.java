@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,15 +35,17 @@ public class LoginActivity extends AppCompatActivity {
 
             if (lr != null) {
                 startActivity(new Intent(this, MainActivity.class).putExtra("id_utente", lr.id_utente).putExtra( "id_inventario", lr.id_inventario));;
+                Toast.makeText(LoginActivity.this, "Benvenuto!", Toast.LENGTH_SHORT).show();
                 finish();
             } else {
                 //wrong credentials
                 Log.i("LoginActivity", "wrong credentials");
+                Toast.makeText(LoginActivity.this, "Credenziali errate. Riprova.", Toast.LENGTH_SHORT).show();
             }
         });
 
         Button registerButton = findViewById(R.id.registrationButton);
-        registerButton.setOnClickListener( v -> { startActivity(new Intent(this, RegistrationActivity.class)); finish(); });
+        registerButton.setOnClickListener( v -> { startActivity(new Intent(this, RegistrationActivity.class)); });
     }
 
 

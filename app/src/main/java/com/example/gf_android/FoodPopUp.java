@@ -1,5 +1,6 @@
 package com.example.gf_android;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +22,12 @@ import com.example.gf_android.Api.Types.Alimento;
 import com.example.gf_android.Api.Types.UpdateInsertMsg;
 import com.example.gf_android.Api.Types.Utente;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class FoodPopUp extends DialogFragment {
@@ -41,7 +47,7 @@ public class FoodPopUp extends DialogFragment {
 
         TextView textViewNome = view.findViewById(R.id.textViewNome);
         ImageView imageViewAlimento = view.findViewById(R.id.imageViewAlimento);
-        TextView textViewScadenza = view.findViewById(R.id.textViewScadenza);
+        Button changedata = view.findViewById(R.id.cambiadata);
         TextView textViewInserimento = view.findViewById(R.id.textViewInserimento);
         TextView textViewQt = view.findViewById(R.id.textViewQt);
         TextView textViewKcal = view.findViewById(R.id.textViewKcal);
@@ -69,7 +75,7 @@ public class FoodPopUp extends DialogFragment {
 
         if (alimento != null) {
             textViewNome.setText(alimento.getNome());
-            textViewScadenza.setText(alimento.getScadenza());
+            changedata.setText(alimento.getScadenza());
             textViewInserimento.setText(alimento.getDataInserimento());
             textViewKcal.setText(String.valueOf(alimento.getKcal()) + "/100g");
             if (alimento.peso_unitario != 0) {
@@ -83,6 +89,52 @@ public class FoodPopUp extends DialogFragment {
             imageViewAlimento.setImageResource(getResources().getIdentifier(imgRes, "drawable", requireContext().getPackageName()));
 
         //buttons' listeners
+            changedata.setOnClickListener(v -> {
+
+                Calendar calendar = Calendar.getInstance();
+
+
+                try {
+                    String currentText = changedata.getText().toString();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy", Locale.getDefault());
+                    Date currentDate = dateFormat.parse(currentText);
+                    if (currentDate != null) {
+                        calendar.setTime(currentDate);
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                new DatePickerDialog(requireContext(), (pickerView, year, month, dayOfMonth) -> {
+
+                    Calendar newDateCalendar = Calendar.getInstance();
+                    newDateCalendar.set(year, month, dayOfMonth);
+                    Date newDate = newDateCalendar.getTime();
+
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy", Locale.getDefault());
+                    String formattedDate = dateFormat.format(newDate);
+
+
+                    changedata.setText(formattedDate);
+
+                    // Chiamata all'API per aggiornare la data
+                    UpdateInsertMsg msg = Api.updateFoodExpire(alimento.id_riga_inventario, newDate);
+                    if (msg.rowsAffected > 0) {
+                        if (listener != null) {
+                            listener.onUpdate();
+                        }
+                        Toast.makeText(getContext(), "Data di scadenza aggiornata!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Errore nell'aggiornamento: " + msg.msg, Toast.LENGTH_SHORT).show();
+                    }
+                },
+                        calendar.get(Calendar.YEAR),
+                        calendar.get(Calendar.MONTH),
+                        calendar.get(Calendar.DAY_OF_MONTH)).show();
+            });
+
+
 
             // dismiss
             closeButton.setOnClickListener(v -> dismiss());
