@@ -111,4 +111,12 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
     }
 
 
+    @Override
+    public void onUpdate(List<Alimento> updatedAlimenti) {
+        inventario = updatedAlimenti;
+        adapter.updateData(this.inventario);
+    }
+
+
+
 }

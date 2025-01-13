@@ -67,8 +67,9 @@ public class OrdinamentActivity {
 
 
                 if (listener != null) {
-                    listener.onUpdate();
+                    listener.onUpdate(alimentosList);
                 }
+
 
             }});
 
