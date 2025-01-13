@@ -109,7 +109,6 @@ public class AddAlimento {
                         quantity *= selectedProduct.peso_unitario;
                     try {
                         Date date = dateFormat.parse(expirationDate);
-                        // TODO: ricordati la storia dei grammi e del peso unitario
                         addFoodInventory(MainActivity.idInventario, selectedProduct.id_alimento, quantity, date);
                         if (listener != null)
                             listener.onUpdate();

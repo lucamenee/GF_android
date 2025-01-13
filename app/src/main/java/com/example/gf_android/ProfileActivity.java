@@ -211,10 +211,14 @@ public class ProfileActivity extends AppCompatActivity {
                 .setPositiveButton("Save", (dialog, which) -> {
                     String newObiettivo =editObiettivo.getText().toString().trim();
                     String newEmail = editEmail.getText().toString().trim();
-                    //String newPassword = editPassword.getText().toString().trim();
 
+                    if (newEmail.isEmpty()) {
+                        Toast.makeText(this, "Il campo email non può essere vuoto.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
                     saveProfileChanges(newEmail, newObiettivo);
+
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
                 .show();
@@ -230,5 +234,31 @@ public class ProfileActivity extends AppCompatActivity {
         Utente user = Api.getUser(idUtente);
 
         Api.updateUserInfo(idUtente, obiettivoInt, email, user.id_inventario);
+        refreshProfileUI();
     }
+
+    private void refreshProfileUI() {
+        Utente updatedUser = Api.getUser(idUtente);
+
+
+        TextView usernameText = findViewById(R.id.username_text);
+        TextView useremail = findViewById(R.id.username_id);
+        ProgressBar progressBar = findViewById(R.id.today_goal_progress);
+        TextView maxProgressText = findViewById(R.id.progress_max);
+
+        String updatedUserName = updatedUser.username;
+        String updatedEmail = updatedUser.email;
+        int updatedDailyGoal = updatedUser.obiettivo_kcal;
+        int updatedCurrentProgress = Api.userTodaysCalories(idUtente);
+
+        usernameText.setText(updatedUserName);
+        useremail.setText(updatedEmail);
+
+        progressBar.setMax(updatedDailyGoal);
+        progressBar.setProgress(updatedCurrentProgress);
+        maxProgressText.setText(String.valueOf(updatedDailyGoal));
+
+        Toast.makeText(this, "Profilo aggiornato con successo!", Toast.LENGTH_SHORT).show();
+    }
+
 }

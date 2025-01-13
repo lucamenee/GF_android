@@ -51,13 +51,12 @@ public class OrdinamentActivity {
 
                 if (order.equals("Crescente")) {
                     alimentosList.sort(Comparator.comparingInt(Alimento::getGrammi));
-                    Log.i("", alimentosList.toString());
                     Toast.makeText(context, "Ordine Crescente", Toast.LENGTH_SHORT).show();
 
                 } else if (order.equals("Decrescente")) {
                     alimentosList.sort(Comparator.comparingInt(Alimento::getGrammi).reversed());
                     Toast.makeText(context, "Ordine Decrescente", Toast.LENGTH_SHORT).show();
-                    Log.i("", alimentosList.toString());
+
                 } else if (order.equals("A-Z")) {
                     alimentosList.sort(Comparator.comparing(Alimento::getNome));
                     Toast.makeText(context, "Dalla A alla Z", Toast.LENGTH_SHORT).show();
