@@ -9,12 +9,23 @@
     android:background="@drawable/background_triangle"
     tools:context=".ProfileActivity">
 
+
+    <!-- BACK TO INVENTARIO -->
+    <Button
+        android:id="@+id/backToInventoryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indietro"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
+
     <!-- Profilo Utente -->
     <ImageView
         android:id="@+id/profile_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:layout_marginStart="16dp"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"

@@ -33,6 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     Intent intent;
     int idUtente;
+    private Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         intent = getIntent();
         idUtente = intent.getIntExtra("id_utente", 0);
+
+        backButton = findViewById(R.id.backToInventoryButton);
+        backButton.setOnClickListener( v -> finish() );
 
 
         List<ObiettivoSettimana> obiettiviSettimana = Api.getObiettivoPerGiorno(idUtente);

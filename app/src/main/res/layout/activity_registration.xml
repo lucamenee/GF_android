@@ -14,7 +14,10 @@ tools:context=".RegistrationActivity">
         android:id="@+id/backToLoginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Torna a Login" />
+        android:text="Torna a Login"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="16dp"
+        tools:ignore="MissingConstraints" />
 
     <LinearLayout
         android:id="@+id/registrationContainer"

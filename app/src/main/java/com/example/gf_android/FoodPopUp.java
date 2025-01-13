@@ -89,11 +89,10 @@ public class FoodPopUp extends DialogFragment {
             imageViewAlimento.setImageResource(getResources().getIdentifier(imgRes, "drawable", requireContext().getPackageName()));
 
         //buttons' listeners
+            //cambia data di scadenza
             changedata.setOnClickListener(v -> {
 
                 Calendar calendar = Calendar.getInstance();
-
-
                 try {
                     String currentText = changedata.getText().toString();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy", Locale.getDefault());
@@ -105,9 +104,11 @@ public class FoodPopUp extends DialogFragment {
                     e.printStackTrace();
                 }
 
+
                 new DatePickerDialog(requireContext(), (pickerView, year, month, dayOfMonth) -> {
 
                     Calendar newDateCalendar = Calendar.getInstance();
+
                     newDateCalendar.set(year, month, dayOfMonth);
                     Date newDate = newDateCalendar.getTime();
 
@@ -115,6 +116,7 @@ public class FoodPopUp extends DialogFragment {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy", Locale.getDefault());
                     String formattedDate = dateFormat.format(newDate);
 
+                    Log.i("Date format", newDate.toString());
 
                     changedata.setText(formattedDate);
 
