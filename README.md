@@ -1,24 +1,26 @@
 # Sons of Fridges
-## Stato attuale dell'app
 
-L'applicazione è a buon punto: le feature principali sono implementate e funzionanti, ma necessitano di un controllo più accurato e di alcune piccole modifiche per essere ultimate.
+## Componenti del gruppo e ruoli
 
-## Funzionalità in fase di sviluppo o mancanti
+- Project manager: Luca Meneghetti
+- Analisi dei requisiti: Lorenzo Orsato
+- Sviluppatore software: Francesco Gerlin
+- Quality assurance: Francesco Gerlin
+- Architetto software: Luca Meneghetti
 
-Alcune caratteristiche sono ancora in fase di sviluppo o devono essere aggiunte:
+## Funzionalità 
 
-- Condivisione dell'inventario: la possibilità di condividere l'inventario con altri utenti è ancora in fase di implementazione.
-- Miglioramenti nelle feature principali: sono previste piccole aggiunte e ottimizzazioni alle funzionalità già presenti per migliorarne l'usabilità e la performance.
-- Sezione Profilo: la parte relativa al profilo utente è ancora in fase di sviluppo. Alcune opzioni potrebbero non essere completamente funzionanti o visibili in questa versione.
+Questa app consente di gestire in modo efficiente i prodotti nella tua dispensa, monitorando le loro date di scadenza per ridurre gli sprechi alimentari. Basandosi sugli ingredienti disponibili, l'app suggerisce ricette personalizzate. Inoltre, ogni volta che consumi un ingrediente, tiene traccia del tuo obiettivo calorico giornaliero, fornendoti un resoconto sull'andamento settimanale della tua alimentazione.
 
 ## Problemi che potrebbe riscontrare
+
 ### Problema API gratuita
-Questa applicazione utilizza una API gratuita per ottenere dati e fornire funzionalità agli utenti. Poiché stiamo utilizzando una versione gratuita dell'API, potrebbero esserci dei tempi di attesa o dei tentativi necessari per ottenere i dati. Questo potrebbe comportare un leggero ritardo durante l'accesso alle funzioni principali dell'app. Potrebbero volerci più tentativi/aspettare un certo lasso di tempo qualora il primo tentativo non vada a buon fine.
+Questa applicazione utilizza una API gratuita per ottenere dati e fornire funzionalità agli utenti. Poiché stiamo utilizzando una versione gratuita dell'API, potrebbero esserci dei tempi di attesa o dei tentativi necessari per ottenere i dati. Questo potrebbe comportare un leggero ritardo durante l'accesso alle funzioni principali dell'app. Potrebbero volerci più tentativi/aspettare un certo lasso di tempo qualora il primo tentativo non vada a buon fine. Inoltre, l'API può gestire solo due dispositivi alla votla.
 
 ## Come accedere
-Può utilizzare il nostro account di testing oppure crearne uno lei stesso tramite la registrazione
-Utente: test
-Password: test
+Ci sono due modi per accedere:
+- Usare l'account di testing (username: test, password: test)
+- Creare un account con la registrazione
+
 
   
-Grazie per la comprensione.
