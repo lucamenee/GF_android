@@ -22,5 +22,6 @@ Ci sono due modi per accedere:
 - Usare l'account di testing (username: test, password: test)
 - Creare un account con la registrazione
 
+## Come installare l'app
 
   
