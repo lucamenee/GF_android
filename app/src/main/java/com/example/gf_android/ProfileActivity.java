@@ -205,7 +205,7 @@ public class ProfileActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("Edit Profile")
                 .setView(dialogView)
-                .setPositiveButton("Save", (dialog, which) -> {
+                .setPositiveButton("Salva", (dialog, which) -> {
                     String newObiettivo =editObiettivo.getText().toString().trim();
                     String newEmail = editEmail.getText().toString().trim();
 
@@ -217,7 +217,7 @@ public class ProfileActivity extends AppCompatActivity {
                     saveProfileChanges(newEmail, newObiettivo);
 
                 })
-                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .setNegativeButton("Annulla", (dialog, which) -> dialog.dismiss())
                 .show();
     }
 
