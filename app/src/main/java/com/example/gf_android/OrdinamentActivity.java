@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
@@ -29,55 +30,85 @@ public class OrdinamentActivity {
         View dialogview = inflater.inflate(R.layout.activity_ordinament, null);
         builder.setView(dialogview);
 
-        final Spinner orderHomeView = dialogview.findViewById(R.id.et_order_home_view);
-        List<String> x = new ArrayList<>();
-        x.add("Data di scadenza");
-        x.add("Crescente");
-        x.add("Decrescente");
-        x.add("A-Z");
+
+        LinearLayout date_asc = dialogview.findViewById(R.id.date_asc_order);
+        LinearLayout date_desc = dialogview.findViewById(R.id.date_desc_order);
+        LinearLayout az = dialogview.findViewById(R.id.az_order);
+        LinearLayout za = dialogview.findViewById(R.id.za_order);
+        List<LinearLayout> linearLayouts = new ArrayList<>();
+        linearLayouts.add(date_asc);
+        linearLayouts.add(date_desc);
+        linearLayouts.add(az);
+        linearLayouts.add(za);
 
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
-                context, android.R.layout.simple_spinner_item, x
-        );
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        orderHomeView.setAdapter(spinnerAdapter);
 
         List<Alimento> alimentosList = Api.inventory(MainActivity.idInventario);
-        orderHomeView.setAdapter(spinnerAdapter);
+
+
+        date_desc.setOnClickListener(e -> {
+            alimentosList.sort(Comparator.comparing(Alimento::expiresIn).reversed());
+            Toast.makeText(context, "Data di scadenza decrescente", Toast.LENGTH_SHORT).show();
+            if (listener != null) {
+                listener.onUpdate(alimentosList);
+            }
+            for (LinearLayout linearLayout : linearLayouts) {
+                linearLayout.setBackgroundColor(context.getColor(R.color.light_blue));
+            }
+            date_desc.setBackgroundColor(context.getResources().getColor(R.color.primary_dark_color));
+
+        });
+        date_asc.setOnClickListener(e -> {
+            alimentosList.sort(Comparator.comparing(Alimento::expiresIn));
+            Toast.makeText(context, "Data di scadenza", Toast.LENGTH_SHORT).show();
+            if (listener != null) {
+                listener.onUpdate(alimentosList);
+            }
+            for (LinearLayout linearLayout : linearLayouts) {
+                linearLayout.setBackgroundColor(context.getColor(R.color.light_blue));
+            }
+            date_asc.setBackgroundColor(context.getResources().getColor(R.color.primary_dark_color));
+        });
+        az.setOnClickListener(e -> {
+            alimentosList.sort(Comparator.comparing(Alimento::getNome));
+            Toast.makeText(context, "Dalla A alla Z", Toast.LENGTH_SHORT).show();
+            if (listener != null) {
+                listener.onUpdate(alimentosList);
+            }
+            for (LinearLayout linearLayout : linearLayouts) {
+                linearLayout.setBackgroundColor(context.getColor(R.color.light_blue));
+            }
+            az.setBackgroundColor(context.getResources().getColor(R.color.primary_dark_color));
+
+        });
+        za.setOnClickListener(e -> {
+            alimentosList.sort(Comparator.comparing(Alimento::getNome).reversed());
+            Toast.makeText(context, "Dalla Z alla A", Toast.LENGTH_SHORT).show();
+            if (listener != null) {
+                listener.onUpdate(alimentosList);
+            }
+            for (LinearLayout linearLayout : linearLayouts) {
+                linearLayout.setBackgroundColor(context.getColor(R.color.light_blue));
+            }
+            za.setBackgroundColor(context.getResources().getColor(R.color.primary_dark_color));
+        });
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String order = orderHomeView.getSelectedItem().toString();
-
-                if(order.equals("Data di scadenza")){
-                    alimentosList.sort(Comparator.comparing(Alimento::expiresIn));
-                    Toast.makeText(context, "Data di scadenza", Toast.LENGTH_SHORT).show();
-                }else if (order.equals("Decrescente")) {
-                    alimentosList.sort(Comparator.comparingInt(Alimento::getGrammi).reversed());
-                    Toast.makeText(context, "Ordine Decrescente", Toast.LENGTH_SHORT).show();
-                } else if (order.equals("Crescente")) {
-                    alimentosList.sort(Comparator.comparingInt(Alimento::getGrammi));
-                    Toast.makeText(context, "Ordine Crescente", Toast.LENGTH_SHORT).show();
-                }else if (order.equals("A-Z")) {
-                    alimentosList.sort(Comparator.comparing(Alimento::getNome));
-                    Toast.makeText(context, "Dalla A alla Z", Toast.LENGTH_SHORT).show();
-                }
-
-                spinnerAdapter.notifyDataSetChanged();
-
-
                 if (listener != null) {
                     listener.onUpdate(alimentosList);
                 }
-
-
-            }});
+            }
+        });
 
         builder.setNegativeButton("Annulla", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                alimentosList.sort(Comparator.comparing(Alimento::expiresIn));
+                if (listener != null) {
+                    listener.onUpdate(alimentosList);
+                }
                 dialog.dismiss();
             }
         });

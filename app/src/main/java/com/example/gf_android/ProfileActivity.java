@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton$InspectionCompanion;
 
 import com.example.gf_android.Api.Api;
 import com.example.gf_android.Api.Types.ObiettivoSettimana;
@@ -24,8 +23,6 @@ import com.example.gf_android.Api.Types.UpdateInsertMsg;
 import com.example.gf_android.Api.Types.Utente;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -8,11 +9,108 @@
     android:scrollbars="vertical">
 
 
-    <Spinner
-        android:id="@+id/et_order_home_view"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="0dp"
+            android:layout_margin="0dp">
+            <LinearLayout
+                android:id="@+id/date_desc_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="5dp"
+                android:background="@color/light_blue"
+                android:layout_margin="10dp">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/arrow_down">
+                </ImageView>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/calendar">
+                </ImageView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/date_asc_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="5dp"
+                android:background="@color/light_blue"
+                android:layout_margin="10dp">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/arrow_up">
+                </ImageView>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/calendar">
+                </ImageView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="0dp"
+            android:layout_margin="0dp">
+            <LinearLayout
+                android:id="@+id/az_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="5dp"
+                android:background="@color/light_blue"
+                android:layout_margin="10dp">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/az">
+                </ImageView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/za_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="5dp"
+                android:background="@color/light_blue"
+                android:layout_margin="10dp">
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/za">
+                </ImageView>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
