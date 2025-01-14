@@ -53,7 +53,7 @@ public interface ApiService {
     Call<UpdateInsertMsg> updateFoodQt(@Query("id_riga") int idRigaInventario, @Query("qt") int grammi);
 
     @POST("updateFoodExpire")
-    Call<UpdateInsertMsg> updateFoodExpire(@Query("id_riga") int idRigaInventario, @Query("data") Date dataScadenza);
+    Call<UpdateInsertMsg> updateFoodExpire(@Query("id_riga") int idRigaInventario, @Query("data") String dataScadenza);
 
     @POST("consumeFood")
     Call<UpdateInsertMsg> consumeFood(@Query("id_riga") int idRigaInventario, @Query("qt") int grammi, @Query("id_utente") int idUtente);

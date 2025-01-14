@@ -137,8 +137,15 @@ public class Api {
     }
 
     public static UpdateInsertMsg updateFoodExpire(int idRigaInventario, Date dataScadenza) {
-        Call<UpdateInsertMsg> call = apiService.updateFoodExpire(idRigaInventario, dataScadenza);
-        return getApiResponse(call);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        Call<UpdateInsertMsg> call = apiService.updateFoodExpire(idRigaInventario, dateFormat.format(dataScadenza));
+        UpdateInsertMsg updateInsertMsg = getApiResponse(call);
+        if (updateInsertMsg != null) {
+            return updateInsertMsg;
+        }
+        return new UpdateInsertMsg( "Error, food wasn't added to inventory", 0);
     }
 
     public static Integer userTodaysCalories(int idUtente) {
