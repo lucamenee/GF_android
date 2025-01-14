@@ -23,5 +23,5 @@ Ci sono due modi per accedere:
 - Creare un account con la registrazione
 
 ## Come installare l'app
-
+Basta scaricare l'app-debug.apk su un telefono Android e installare. L'app sarà pronta all'uso 
   
