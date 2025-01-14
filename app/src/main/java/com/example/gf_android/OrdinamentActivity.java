@@ -31,9 +31,11 @@ public class OrdinamentActivity {
 
         final Spinner orderHomeView = dialogview.findViewById(R.id.et_order_home_view);
         List<String> x = new ArrayList<>();
+        x.add("Data di scadenza");
         x.add("Crescente");
         x.add("Decrescente");
         x.add("A-Z");
+
 
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
                 context, android.R.layout.simple_spinner_item, x
@@ -49,15 +51,16 @@ public class OrdinamentActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String order = orderHomeView.getSelectedItem().toString();
 
-                if (order.equals("Crescente")) {
-                    alimentosList.sort(Comparator.comparingInt(Alimento::getGrammi));
-                    Toast.makeText(context, "Ordine Crescente", Toast.LENGTH_SHORT).show();
-
-                } else if (order.equals("Decrescente")) {
+                if(order.equals("Data di scadenza")){
+                    alimentosList.sort(Comparator.comparing(Alimento::expiresIn));
+                    Toast.makeText(context, "Data di scadenza", Toast.LENGTH_SHORT).show();
+                }else if (order.equals("Decrescente")) {
                     alimentosList.sort(Comparator.comparingInt(Alimento::getGrammi).reversed());
                     Toast.makeText(context, "Ordine Decrescente", Toast.LENGTH_SHORT).show();
-
-                } else if (order.equals("A-Z")) {
+                } else if (order.equals("Crescente")) {
+                    alimentosList.sort(Comparator.comparingInt(Alimento::getGrammi));
+                    Toast.makeText(context, "Ordine Crescente", Toast.LENGTH_SHORT).show();
+                }else if (order.equals("A-Z")) {
                     alimentosList.sort(Comparator.comparing(Alimento::getNome));
                     Toast.makeText(context, "Dalla A alla Z", Toast.LENGTH_SHORT).show();
                 }
