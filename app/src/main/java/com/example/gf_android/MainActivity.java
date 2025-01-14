@@ -65,14 +65,12 @@ public class MainActivity extends AppCompatActivity implements OnUpdatesListener
         {
             Log.i("MainActivity", "Loggato con id_utente=" + idUtente + " e id_inventario=" + idInventario);
         }
-        // TODO: forse bisogna mettere controllo che info da intent siano state ottenute correttamente
 
 
         allAlimenti = Api.getAlimenti();
         inventario = Api.inventory(idInventario);
         helloMsg.setText("Ciao " + Api.getUser(idUtente).username);
 
-        // TODO: showing food in user inventory
         GridView gridView = findViewById(R.id.gridview);
         adapter = new AlimentoAdapter(this, inventario, Api.getUser(idUtente));
         gridView.setAdapter(adapter);
