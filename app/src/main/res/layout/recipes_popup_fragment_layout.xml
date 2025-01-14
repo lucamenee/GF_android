@@ -9,20 +9,20 @@
 
     <TextView
         android:id="@+id/recipe_name"
-        android:layout_width="360dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:padding="0dp"
         android:text="Nessuna ricetta trovata"
-        android:textSize="10sp"
+        android:textSize="8sp"
         android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/recipes_ingredients"
-        android:layout_width="357dp"
+        android:layout_width="350dp"
         android:layout_height="104dp"
         android:text=""
-        android:textSize="8sp"
+        android:textSize="6sp"
         tools:ignore="HardcodedText" />
 
     <Button
